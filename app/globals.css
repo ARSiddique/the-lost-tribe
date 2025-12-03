@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
+/* ---- CSS Variables (our palette) ---- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #050304;            /* page bg (dark)  */
+  --fg: #f8f2e6;            /* main text       */
+  --muted: #a18c77;         /* secondary text  */
+  --accent: #c99a4b;        /* gold accent     */
+  --card: #141016;          /* dark card       */
+  --border-subtle: 255 255 255 / .10; /* for borders as <r g b / a> */
 }
 
+/* ---- Tailwind v4 theme tokens (so we can do bg-bg, text-fg, etc.) ---- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-border-subtle: rgb(var(--border-subtle));
+
+  /* optional fonts (keep defaults for now) */
+  /* --font-sans: ui-sans-serif, system-ui, sans-serif; */
+  /* --font-mono: ui-monospace, SFMono-Regular, monospace; */
 }
 
-@media (prefers-color-scheme: dark) {
+/* Light mode (optional). If you want only dark, you can skip this block) */
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #f6f0e9;
+    --fg: #261711;
+    --muted: #6f5a4a;
+    --accent: #c99a4b;
+    --card: #ffffff;
+    --border-subtle: 0 0 0 / .06;
   }
 }
 
+/* Base */
+html, body {
+  height: 100%;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;
 }
