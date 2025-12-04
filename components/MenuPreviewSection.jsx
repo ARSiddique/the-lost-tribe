@@ -59,50 +59,74 @@ export default function MenuPreviewSection() {
           </div>
         </motion.div>
 
-        {/* cards grid */}
+        {/* cards grid – 3D stacked tiles */}
         <motion.div
-          className="grid gap-6 md:grid-cols-3"
+          className="relative grid gap-6 md:grid-cols-3"
+          style={{ perspective: "1400px" }}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {MENU_PREVIEW.map((item, idx) => (
-            <motion.article
-              key={item.title}
-              className="group overflow-hidden rounded-3xl border border-white/12 bg-black/70 shadow-[0_18px_50px_rgba(0,0,0,0.85)] backdrop-blur-xl"
-              variants={cardVariants}
-              custom={idx}
-              whileHover={{ y: -6 }}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {/* top gradient + subtle label */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/30" />
-                <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-md">
-                  chef&apos;s pick
-                </div>
-              </div>
+          {MENU_PREVIEW.map((item, idx) => {
+            const baseTilt = idx === 0 ? -3 : idx === 1 ? 0 : 3;
 
-              <div className="p-4 pb-5">
-                <h4 className="text-sm font-semibold text-white">
-                  {item.title}
-                </h4>
-                <p className="mt-1 text-[13px] leading-relaxed text-white/70">
-                  {item.desc}
-                </p>
-                {/* optional small detail line */}
-                <p className="mt-3 text-[11px] text-amber-200/80">
-                  • best shared with the table
-                </p>
-              </div>
-            </motion.article>
-          ))}
+            return (
+              <Link
+                key={item.title}
+                href="/menu"
+                className="group block h-full"
+              >
+                <motion.article
+                  className="relative overflow-hidden rounded-3xl border border-white/12 bg-black/80 shadow-[0_22px_70px_rgba(0,0,0,0.9)] backdrop-blur-xl"
+                  variants={cardVariants}
+                  custom={idx}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    rotateZ: baseTilt,
+                    zIndex: 10 + idx, // base stacking
+                  }}
+                  whileHover={{
+                    y: -10,
+                    rotateX: -6,
+                    rotateY: 6,
+                    zIndex: 50, // hovered card sab se upar
+                    boxShadow:
+                      "0 30px 90px rgba(0,0,0,0.95), 0 0 40px rgba(251,191,36,0.35)",
+                  }}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    {/* image darken + sheen */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/50" />
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(251,191,36,0.22),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                    {/* label */}
+                    <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-white/80 backdrop-blur-md">
+                      chef&apos;s pick
+                    </div>
+                  </div>
+
+                  <div className="relative p-4 pb-5">
+                    <h4 className="text-sm font-semibold text-white sm:text-[0.98rem]">
+                      {item.title}
+                    </h4>
+                    <p className="mt-1 text-[13px] leading-relaxed text-white/70">
+                      {item.desc}
+                    </p>
+                    <p className="mt-3 text-[11px] text-amber-200/80">
+                      • best shared with the table
+                    </p>
+                  </div>
+                </motion.article>
+              </Link>
+            );
+          })}
         </motion.div>
       </div>
     </section>

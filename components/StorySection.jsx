@@ -83,7 +83,7 @@ export function StorySection() {
             <div className="relative h-64 w-full sm:h-72">
               {/* yahan apni ambience image ka path laga sakte ho */}
               <Image
-                src="/images/hero-table.jpg"
+                src="/images/story-table.jpg"
                 alt="Candle-lit table inside The Lost Tribe"
                 fill
                 className="object-cover"

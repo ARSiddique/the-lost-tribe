@@ -1,226 +1,174 @@
+// app/components/home/HeroSection.jsx
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+
+const heroCards = [
+  {
+    tag: "SIGNATURE DISH",
+    title: "Lamb Shank with Qabuli",
+    desc: "Slow-cooked over charcoal, qabuli rice & toasted nuts.",
+    accent: "limited plates every night",
+  },
+  {
+    tag: "FROM THE COALS",
+    title: "Lamb & Karahi Nights",
+    desc: "Slow-cooked lamb, rich gravies and sharing karahis.",
+    accent: "best shared with the table",
+  },
+  {
+    tag: "VEGETARIAN",
+    title: "Vegetarian Comforts",
+    desc: "Palak, paneer and slow-cooked daals for comfort nights.",
+    accent: "comfort food, tribe-style",
+  },
+];
 
 export function HeroSection() {
-  // 3D tilt values for the right side cards
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const router = useRouter();
+  const sectionRef = useRef(null);
 
-  const rotateX = useTransform(y, [-150, 150], [12, -12]);
-  const rotateY = useTransform(x, [-150, 150], [-12, 12]);
+  // Parallax scroll for background
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - (rect.left + rect.width / 2);
-    const offsetY = e.clientY - (rect.top + rect.height / 2);
-    x.set(offsetX);
-    y.set(offsetY);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 80]);      // city image
+  const glowY = useTransform(scrollYProgress, [0, 1], [-10, 40]);  // yellow glow
 
   return (
-    <section className="relative min-h-[86vh] md:min-h-[90vh] text-white overflow-hidden">
-      {/* BG image */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-table.jpg"
-          alt="Warm candle-lit dining table"
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_62%] brightness-[.95] contrast-110 saturate-105"
-          priority
-        />
-
-        {/* tinted overlay */}
-        <div className="absolute inset-0 bg-black/40" />
-
-        {/* animated color wash for next-gen feel */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 mix-blend-soft-light opacity-70"
-          initial={{ opacity: 0.4 }}
-          animate={{ opacity: [0.35, 0.6, 0.4] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 0% 0%, rgba(251,191,36,0.4), transparent 55%), radial-gradient(circle at 100% 20%, rgba(248,250,252,0.18), transparent 55%), radial-gradient(circle at 50% 95%, rgba(74,222,128,0.28), transparent 60%)",
-          }}
-        />
-
-        {/* subtle vignette */}
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-black/10 [mask-image:radial-gradient(80%_60%_at_50%_40%,#000_60%,transparent_100%)]" />
-
-        {/* bottom gradient for contrast with next sections */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-black/80 to-black" />
-      </div>
-
-      {/* Content */}
-      <div
-        className="relative z-10 mx-auto flex min-h-[86vh] max-w-6xl flex-col gap-10 px-4 pb-16 pt-28 md:min-h-[90vh] md:flex-row md:items-center md:justify-between md:gap-14 md:pt-32 lg:pt-36"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden bg-black text-white"
+    >
+      {/* Background image layer with parallax */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 will-change-transform"
+        style={{ y: bgY }}
       >
-        {/* LEFT – main copy */}
-        <motion.div
-          className="max-w-xl text-center md:text-left"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-        >
-          <motion.p
-            className="mb-3 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-black/50 px-4 py-1 text-[10px] uppercase tracking-[0.28em] text-amber-100/90"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
+        <div className="h-full w-full scale-105 bg-[url('/images/hero-table.jpg')] bg-cover bg-center opacity-70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black" />
+      </motion.div>
+
+      {/* Soft radial glow behind cards (also parallax) */}
+      <motion.div
+        className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-gradient-to-br from-yellow-500/40 via-amber-400/20 to-transparent blur-3xl will-change-transform"
+        style={{ y: glowY }}
+      />
+
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-20 md:flex-row md:items-center md:justify-between md:px-6 lg:py-24">
+        {/* Left copy */}
+        <div className="max-w-xl space-y-6">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.18em] text-emerald-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             Escape into a hidden ritual
-          </motion.p>
+          </div>
 
-          <motion.h1
-            className="text-[40px] md:text-5xl lg:text-6xl font-semibold tracking-wide drop-shadow-[0_1px_8px_rgba(0,0,0,.55)]"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25 }}
-          >
-            DINING
-            <span className="block bg-gradient-to-r from-amber-200 via-amber-400 to-rose-300 bg-clip-text text-transparent">
-              RITUAL
-            </span>
-          </motion.h1>
+          <div className="space-y-2">
+            <h1 className="text-4xl font-semibold leading-tight md:text-5xl lg:text-6xl">
+              <span className="block">DINING</span>
+              <span className="block text-amber-300">RITUAL</span>
+            </h1>
+            <p className="max-w-lg text-sm leading-relaxed text-neutral-200/80 md:text-base">
+              Candle-lit tables, slow-fire halal dishes, and a room that hums
+              like a secret. The Lost Tribe turns every dinner into a story
+              whispered in low light.
+            </p>
+          </div>
 
-          <motion.p
-            className="mt-4 text-sm leading-relaxed text-slate-100/85 md:text-base"
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-          >
-            Candle-lit tables, slow-fire halal dishes, and a room that hums like
-            a secret. The Lost Tribe turns every dinner into a story whispered
-            in low light.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            className="mt-7 flex flex-wrap items-center justify-center gap-4 md:justify-start"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45 }}
-          >
-            <Link
+          <div className="flex flex-wrap items-center gap-4">
+            <a
               href="/reservations"
-              className="inline-flex items-center rounded-full border border-accent/80 bg-accent px-8 py-2.5 text-sm md:text-base font-medium text-black shadow-[0_10px_30px_rgba(0,0,0,.4)] hover:brightness-110 active:scale-[.98] transition"
+              className="rounded-full bg-amber-400 px-6 py-2.5 text-sm font-semibold text-black shadow-[0_18px_50px_rgba(251,191,36,0.45)] transition hover:translate-y-[1px] hover:bg-amber-300"
             >
-              Book a Table
-            </Link>
-
-            <Link
+              Book a table
+            </a>
+            <a
               href="/menu"
-              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/40 px-6 py-2 text-xs md:text-sm text-slate-50/90 backdrop-blur-md hover:border-amber-200/80 hover:text-amber-50 transition"
+              className="rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-md hover:border-amber-300/70 hover:text-amber-200"
             >
-              Explore the Menu
-              <span className="hidden text-[11px] text-slate-300/90 sm:inline">
-                Lamb shank • Mandi • Desserts
-              </span>
-            </Link>
-          </motion.div>
+              Explore the menu
+            </a>
+          </div>
 
-          {/* scroll hint */}
-          <motion.div
-            className="mt-8 flex items-center justify-center gap-3 text-[11px] text-slate-200/80 md:justify-start"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
-          >
-            <div className="flex h-8 w-[1px] flex-col overflow-hidden rounded-full bg-slate-400/60">
-              <motion.div
-                className="h-3 w-full bg-amber-300"
-                animate={{ y: ["-120%", "150%"] }}
-                transition={{
-                  duration: 1.7,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-            <span>Scroll to enter the ritual</span>
-          </motion.div>
-        </motion.div>
+          <p className="mt-2 text-xs text-neutral-300/70">
+            Lamb shank • Karahi nights • Mandi • Desserts
+          </p>
+        </div>
 
-        {/* RIGHT – floating 3D cards */}
-        <motion.div
-          className="relative mx-auto mt-4 flex max-w-xs flex-1 items-center justify-center md:mt-0 md:max-w-sm"
-          style={{ rotateX, rotateY }}
-          transition={{ type: "spring", stiffness: 80, damping: 18 }}
+        {/* Right stacked cards – 3D feel */}
+        <div
+          className="relative mt-6 flex w-full max-w-md justify-center md:mt-0"
+          style={{ perspective: "1400px" }}
         >
-          {/* glow under cards */}
-          <div className="pointer-events-none absolute -bottom-10 h-44 w-44 rounded-full bg-amber-500/30 blur-3xl" />
+          {heroCards.map((card, index) => {
+            const baseTranslateY = index * 22; // stack offset
+            const baseRotate = index === 0 ? -6 : index === 2 ? 5 : -1;
 
-          <motion.div
-            className="relative grid w-full grid-cols-2 gap-4"
-            initial={{ opacity: 0, scale: 0.9, y: 24 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.7 }}
-          >
-            {/* main signature dish card */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="col-span-2 rounded-3xl border border-amber-100/15 bg-gradient-to-br from-black/80 via-black/40 to-amber-900/40 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl"
-            >
-              <p className="text-[10px] uppercase tracking-[0.24em] text-amber-300/90">
-                signature dish
-              </p>
-              <p className="mt-1 text-lg font-semibold text-amber-100">
-                Lamb Shank with Qabuli
-              </p>
-              <p className="mt-1 text-[11px] text-slate-100/85">
-                Slow-cooked over charcoal, finished with fragrant qabuli rice &
-                toasted nuts.
-              </p>
-              <p className="mt-3 text-[10px] text-emerald-300/85">
-                • limited plates every night
-              </p>
-            </motion.div>
+            return (
+              <motion.div
+                key={card.title}
+                initial={{
+                  opacity: 0,
+                  y: baseTranslateY + 40,
+                  rotateY: 12,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: baseTranslateY,
+                  rotateY: 0,
+                }}
+                transition={{
+                  delay: 0.2 + index * 0.1,
+                  duration: 0.7,
+                  ease: "easeOut",
+                }}
+                whileHover={{
+                  y: baseTranslateY - 8,
+                  rotateX: -4,
+                  rotateY: index === 1 ? 6 : 2,
+                  boxShadow:
+                    "0 30px 80px rgba(0,0,0,0.85), 0 0 40px rgba(251,191,36,0.25)",
+                  zIndex: 40,
+                }}
+                className={[
+                  "group absolute w-full cursor-pointer rounded-3xl border border-white/6 bg-gradient-to-br",
+                  "from-neutral-900/95 via-neutral-900/90 to-neutral-900/80",
+                  "px-5 py-4 shadow-[0_18px_45px_rgba(0,0,0,0.75)]",
+                  "backdrop-blur-xl transition-transform duration-300 ease-out",
+                  "relative",
+                ].join(" ")}
+                style={{
+                  transformStyle: "preserve-3d",
+                  translateY: baseTranslateY,
+                  rotateZ: baseRotate,
+                  zIndex: 10 - index,
+                }}
+                onClick={() => router.push("/menu")}
+                role="button"
+              >
+                <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.18em] text-amber-300/80">
+                  {card.tag}
+                </p>
+                <h3 className="text-sm font-semibold text-white md:text-base">
+                  {card.title}
+                </h3>
+                <p className="mt-1 text-[11px] leading-relaxed text-neutral-300/80">
+                  {card.desc}
+                </p>
+                <p className="mt-3 text-[10px] font-medium text-emerald-300/85">
+                  • {card.accent}
+                </p>
 
-            {/* card 2 */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="rounded-3xl border border-white/15 bg-black/70 p-3 backdrop-blur-xl"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-300">
-                from the coals
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-50">
-                Chicken Mandi
-              </p>
-              <p className="mt-1 text-[11px] text-slate-200/85">
-                Smoke, spice & mandi rice.
-              </p>
-            </motion.div>
-
-            {/* card 3 */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="rounded-3xl border border-white/15 bg-black/70 p-3 backdrop-blur-xl"
-            >
-              <p className="text-[10px] uppercase tracking-[0.2em] text-slate-300">
-                vegetarian
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-50">
-                Palak Paneer
-              </p>
-              <p className="mt-1 text-[11px] text-slate-200/85">
-                Creamy spinach, charred naan, warm spice.
-              </p>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+                {/* subtle gradient sheen */}
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-white/6 via-transparent to-amber-300/10 opacity-0 transition group-hover:opacity-100" />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
