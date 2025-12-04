@@ -2,16 +2,40 @@
 
 // --- Home: "From the Kitchen" PREVIEW (3 items, use LOCAL jpgs) ---
 export const MENU_PREVIEW = [
-  { title: "Lamb Shank",     desc: "Slow fire, rich glaze.",            img: "/images/preview-lamb.jpg"   },
-  { title: "Chicken Mandi",  desc: "Spice-rubbed, tender.",             img: "/images/preview-mandi.jpg"  },
-  { title: "Palak Paneer",   desc: "Creamy spinach, paneer.",           img: "/images/preview-palak.jpg"  },
+  {
+    title: "Lamb & Karahi Nights",
+    desc: "Slow-cooked lamb, rich gravies and sharing karahis.",
+    img: "/images/preview-lamb.jpg",
+  },
+  {
+    title: "Mandi & Rice Platters",
+    desc: "Smoky mandi, pulao and over-rice favorites built to share.",
+    img: "/images/preview-mandi.jpg",
+  },
+  {
+    title: "Vegetarian Comforts",
+    desc: "Palak, paneer and slow-cooked daals for comfort nights.",
+    img: "/images/preview-palak.jpg",
+  },
 ];
 
 // --- Home: "Signature Dishes" (use different images than preview) ---
 export const FEATURED_DISHES = [
-  { title: "Lamb Shank with Qabuli Pulao", desc: "Slow-cooked lamb over aromatic Qabuli rice.", img: "/images/dish-lamb-shank.png" },
-  { title: "Chicken Mandi",                desc: "Smoky, spice-rubbed chicken over mandi rice.", img: "/images/dish-chicken-mandi.png" },
-  { title: "Palak Paneer",                 desc: "Creamy spinach with paneer, warm spices.",     img: "/images/dish-palak-paneer.png" },
+  {
+    title: "Lamb Shank with Qabuli Pulao",
+    desc: "Slow-cooked lamb over aromatic qabuli rice, finished with toasted nuts.",
+    img: "/images/dish-lamb-shank.png",
+  },
+  {
+    title: "Mutton Shinwari Karahi",
+    desc: "Mutton, fresh tomatoes and green chilies, cooked low in a light spice wok.",
+    img: "/images/dish-chicken-mandi.png", // temporary image, baad me change kar sakte ho
+  },
+  {
+    title: "★ Mix Grill (4 people)",
+    desc: "A table-side feast of tikka, boti and smoky skewers made for sharing.",
+    img: "/images/dish-palak-paneer.png", // temporary image, baad me grill ka PNG rakh lena
+  },
 ];
 
 // --- Home: "Ambience" gallery (used by <AmbienceGallery/>) ---
