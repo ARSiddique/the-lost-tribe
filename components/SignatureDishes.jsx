@@ -40,7 +40,7 @@ export function SignatureDishes() {
             </span>
           </h3>
           <p className="mt-3 text-sm leading-relaxed text-white/70 sm:text-base">
-            A handful of dishes that rarely leave the menu – the ones guests ask
+            A handful of dishes that rarely leave the menu the ones guests ask
             for by name, and the ones the kitchen obsesses over.
           </p>
         </motion.div>
