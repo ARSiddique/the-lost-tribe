@@ -5,10 +5,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const IMGS = [
-  "/images/ambience-1.jpg",
-  "/images/ambience-2.jpg",
-  "/images/ambience-3.jpg",
-  "/images/hero-table.jpg",
+  "/images/ambience-5.jpeg",
+  "/images/ambience-6.jpeg",
+  "/images/ambience-7.jpeg",
+  "/images/ambience-8.jpeg",
 ];
 
 export default function GalleryStrip() {

@@ -5,17 +5,17 @@ export const MENU_PREVIEW = [
   {
     title: "Lamb & Karahi Nights",
     desc: "Slow-cooked lamb, rich gravies and sharing karahis.",
-    img: "/images/preview-lamb.jpg",
+    img: "/images/preview-lamb.jpeg",
   },
   {
     title: "Mandi & Rice Platters",
     desc: "Smoky mandi, pulao and over-rice favorites built to share.",
-    img: "/images/preview-mandi.jpg",
+    img: "/images/preview-mandi.jpeg",
   },
   {
     title: "Vegetarian Comforts",
     desc: "Palak, paneer and slow-cooked daals for comfort nights.",
-    img: "/images/preview-palak.jpg",
+    img: "/images/preview-palak.jpeg",
   },
 ];
 
@@ -24,26 +24,26 @@ export const FEATURED_DISHES = [
   {
     title: "Lamb Shank with Qabuli Pulao",
     desc: "Slow-cooked lamb over aromatic qabuli rice, finished with toasted nuts.",
-    img: "/images/dish-lamb-shank.png",
+    img: "/images/dish-lamb-shank.jpeg",
   },
   {
     title: "Mutton Shinwari Karahi",
     desc: "Mutton, fresh tomatoes and green chilies, cooked low in a light spice wok.",
-    img: "/images/dish-chicken-mandi.png", // temporary image, baad me change kar sakte ho
+    img: "/images/dish-chicken-mandi.jpeg", // temporary image, baad me change kar sakte ho
   },
   {
     title: "★ Mix Grill (4 people)",
     desc: "A table-side feast of tikka, boti and smoky skewers made for sharing.",
-    img: "/images/dish-palak-paneer.png", // temporary image, baad me grill ka PNG rakh lena
+    img: "/images/dish-palak-paneer.jpeg", // temporary image, baad me grill ka PNG rakh lena
   },
 ];
 
 // --- Home: "Ambience" gallery (used by <AmbienceGallery/>) ---
 export const AMBIENCE_IMAGES = [
-  { alt: "Warm, intimate dining room",        img: "/images/ambience-1.jpg" },
-  { alt: "Candle-lit tables with soft bokeh", img: "/images/ambience-2.jpg" },
-  { alt: "Cozy restaurant interior",          img: "/images/ambience-3.jpg" },
-  { alt: "Evening mood with wood & glass",    img: "/images/ambience-4.jpg" },
+  { alt: "Warm, intimate dining room",        img: "/images/ambience-1.jpeg" },
+  { alt: "Candle-lit tables with soft bokeh", img: "/images/ambience-2.jpeg" },
+  { alt: "Cozy restaurant interior",          img: "/images/ambience-3.jpeg" },
+  { alt: "Evening mood with wood & glass",    img: "/images/ambience-4.jpeg" },
 ];
 
 // --- Full Menu (sectioned) — render on /menu page ---
