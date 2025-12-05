@@ -44,37 +44,42 @@ export default function ContactInfoRow() {
       {cards.map((c, i) => {
         const Icon = c.icon;
         return (
-          <motion.div
-            key={i}
+          <motion.article
+            key={c.title}
             variants={{
-              hidden: { y: 12, opacity: 0 },
+              hidden: { y: 14, opacity: 0 },
               show: { y: 0, opacity: 1, transition: { duration: 0.45, ease: "easeOut" } },
             }}
-            whileHover={{ y: -2 }}
-            className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur"
+            whileHover={{ y: -3 }}
+            className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/6 via-white/4 to-transparent p-5 shadow-[0_18px_45px_rgba(0,0,0,0.75)] backdrop-blur"
           >
+            {/* subtle hover glow */}
+            <div className="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100 md:group-hover:opacity-100" />
+
             <div className="mb-3 flex items-center gap-2">
               <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
-                <Icon className="h-4 w-4 text-white/80" />
+                <Icon className="h-4 w-4 text-white/85" />
               </span>
-              <p className="text-xs tracking-widest text-white/50">{c.title}</p>
+              <p className="text-[10px] tracking-[0.24em] text-white/55">
+                {c.title}
+              </p>
             </div>
 
-            <div className="space-y-0.5 text-sm text-white/80">
-              {c.lines.map((l, k) => (
-                <p key={k}>{l}</p>
+            <div className="space-y-0.5 text-sm text-white/85">
+              {c.lines.map((l) => (
+                <p key={l}>{l}</p>
               ))}
               {c.link && (
                 <Link
                   href={c.link}
                   target="_blank"
-                  className="mt-2 inline-block text-xs text-accent underline-offset-4 hover:underline"
+                  className="mt-2 inline-block text-xs text-amber-300 underline-offset-4 hover:underline"
                 >
                   {c.linkText}
                 </Link>
               )}
             </div>
-          </motion.div>
+          </motion.article>
         );
       })}
     </motion.div>

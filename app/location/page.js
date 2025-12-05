@@ -1,6 +1,6 @@
 // app/location/page.jsx
 import Link from "next/link";
-import CopyButton from "@/components/CopyButton"; // client-only button for clipboard
+import CopyButton from "@/components/CopyButton";
 
 export const metadata = {
   title: "Find Us | The Lost Tribe",
@@ -11,10 +11,16 @@ export const metadata = {
 // ---- Static details (edit here if anything changes) ----
 const ADDRESS_ONE_LINE =
   "8925 West Chester Pike, Upper Darby Township, PA 19082";
-const ADDRESS_LINES = ["8925 West Chester Pike,", "Upper Darby Township, PA 19082"];
+
+const ADDRESS_LINES = [
+  "8925 West Chester Pike,",
+  "Upper Darby Township, PA 19082",
+];
+
 const PHONE_DISPLAY = "(610) 555-0123";
 const PHONE_TEL = "+16105550123";
 const EMAIL = "hello@thelosttribe.com";
+
 const HOURS = [
   { label: "Mon–Thu", time: "5:00 PM — 10:00 PM" },
   { label: "Fri–Sat", time: "5:00 PM — 11:00 PM" },
@@ -23,11 +29,11 @@ const HOURS = [
 
 const GMAPS_PLACE =
   "https://www.google.com/maps/place/8925+West+Chester+Pike,+Upper+Darby+Township,+PA+19082";
+
 const GMAPS_DIRECTIONS =
   "https://www.google.com/maps/dir/?api=1&destination=" +
   encodeURIComponent(ADDRESS_ONE_LINE);
 
-// Optional: tweak map zoom / coords if you want
 const MAP_EMBED_SRC =
   "https://www.google.com/maps?q=8925%20West%20Chester%20Pike%2C%20Upper%20Darby%20Township%2C%20PA%2019082&hl=en&z=15&output=embed";
 
@@ -46,7 +52,7 @@ export default function LocationPage() {
       postalCode: "19082",
       addressCountry: "US",
     },
-    url: "https://thelosttribe.example", // replace with your live domain
+    url: "https://thelosttribe.example", // TODO: replace with real domain
     sameAs: [GMAPS_PLACE],
   };
 
@@ -58,24 +64,53 @@ export default function LocationPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
 
+      {/* HERO + MAP */}
       <section className="relative bg-background text-foreground">
-        <div className="mx-auto max-w-6xl px-4 pt-16 pb-4">
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-            Find Us
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            {ADDRESS_ONE_LINE}
+        {/* soft top gradient so map blend ho jaye header se */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(209,178,96,0.18),transparent_55%)]" />
+
+        <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-10">
+          {/* chip */}
+          <p className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1 text-[10px] tracking-[0.3em] text-amber-200/90 uppercase">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+            Location
           </p>
 
-          {/* Map */}
-          <div className="mt-8 overflow-hidden rounded-xl border border-white/10 shadow-sm">
-            <iframe
-              title="The Lost Tribe — Google Map"
-              src={MAP_EMBED_SRC}
-              className="h-[440px] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <h1 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+            Find us on West Chester Pike.
+          </h1>
+
+          <p className="mt-2 max-w-xl text-sm md:text-base text-muted-foreground">
+            We&apos;re just off West Chester Pike in Upper Darby Township. Easy
+            to reach from the city, with street parking nearby.
+          </p>
+
+          {/* badges */}
+          <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+              • Easy to find
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+              • Street parking nearby
+            </span>
+            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+              • Family-friendly
+            </span>
+          </div>
+
+          {/* Map with glow */}
+          <div className="relative mt-8">
+            <div className="pointer-events-none absolute inset-x-8 -bottom-10 h-24 rounded-full bg-amber-500/20 blur-3xl" />
+
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_22px_70px_rgba(0,0,0,0.85)]">
+              <iframe
+                title="The Lost Tribe — Google Map"
+                src={MAP_EMBED_SRC}
+                className="h-[420px] w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
 
           {/* CTA row */}
@@ -83,43 +118,45 @@ export default function LocationPage() {
             <Link
               href={GMAPS_DIRECTIONS}
               target="_blank"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-black font-medium hover:brightness-110 active:scale-95 transition"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-black shadow-[0_15px_35px_rgba(0,0,0,0.35)] hover:brightness-110 active:scale-95 transition"
               aria-label="Get directions"
             >
-              Get Directions
+              Get directions
             </Link>
 
             <Link
               href={GMAPS_PLACE}
               target="_blank"
-              className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/15 px-5 py-3 hover:bg-white/15 transition"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm hover:bg-white/10 transition"
               aria-label="View on Google Maps"
             >
               View on Google Maps
             </Link>
 
-            {/* Client-only copy action (keeps page as Server Component) */}
             <CopyButton
               text={ADDRESS_ONE_LINE}
-              className="inline-flex items-center justify-center rounded-full bg-white/10 border border-white/15 px-5 py-3 hover:bg-white/15 transition"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm hover:bg-white/10 transition"
             />
           </div>
         </div>
       </section>
 
-      {/* Info cards */}
+      {/* INFO GRID */}
       <section className="bg-background text-foreground">
         <div className="mx-auto max-w-6xl px-4 pb-16">
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             {/* Hours */}
-            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 Hours
               </h3>
               <ul className="mt-3 space-y-2 text-sm">
                 {HOURS.map((h) => (
-                  <li key={h.label} className="flex items-center justify-between">
-                    <span className="text-foreground/90">{h.label}</span>
+                  <li
+                    key={h.label}
+                    className="flex items-center justify-between text-foreground/90"
+                  >
+                    <span>{h.label}</span>
                     <span className="text-foreground">{h.time}</span>
                   </li>
                 ))}
@@ -127,11 +164,11 @@ export default function LocationPage() {
             </div>
 
             {/* Contact */}
-            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 Contact
               </h3>
-              <div className="mt-3 space-y-2 text-sm">
+              <div className="mt-3 space-y-2 text-sm text-foreground/90">
                 <p>
                   Phone:{" "}
                   <Link
@@ -153,22 +190,23 @@ export default function LocationPage() {
               </div>
             </div>
 
-            {/* Parking / Notes */}
-            <div className="rounded-xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-sm uppercase tracking-wider text-muted-foreground">
+            {/* Parking + Address */}
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 Parking
               </h3>
               <p className="mt-3 text-sm text-foreground/90">
                 Street parking available nearby. Please arrive a few minutes
-                early.
+                early, especially on weekends.
               </p>
-              <h3 className="mt-6 text-sm uppercase tracking-wider text-muted-foreground">
+
+              <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 Address
               </h3>
               <p className="mt-3 text-sm text-foreground/90">
-                {ADDRESS_LINES.map((l, i) => (
+                {ADDRESS_LINES.map((line, i) => (
                   <span key={i} className="block">
-                    {l}
+                    {line}
                   </span>
                 ))}
               </p>
