@@ -2,19 +2,25 @@
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 
+// ─────────────────────────────────────────────
+// SEO metadata
+// ─────────────────────────────────────────────
 export const metadata = {
   title: "Find Us | The Lost Tribe",
   description:
     "Address, hours, parking, and directions to The Lost Tribe — 8925 West Chester Pike, Upper Darby Township, PA 19082.",
 };
 
-// ---- Static details (edit here if anything changes) ----
+// ─────────────────────────────────────────────
+// Static details (single source of truth)
+// ─────────────────────────────────────────────
 const ADDRESS_ONE_LINE =
-  "8925 West Chester Pike, Upper Darby Township, PA 19082";
+  "The Lost Tribe, 8925 West Chester Pike, Upper Darby Township, PA 19082, USA";
 
 const ADDRESS_LINES = [
-  "8925 West Chester Pike,",
-  "Upper Darby Township, PA 19082",
+  "The Lost Tribe",
+  "8925 West Chester Pike",
+  "Upper Darby Township, PA 19082, USA",
 ];
 
 const PHONE_DISPLAY = "(610) 555-0123";
@@ -27,15 +33,18 @@ const HOURS = [
   { label: "Sun", time: "5:00 PM — 9:00 PM" },
 ];
 
-const GMAPS_PLACE =
-  "https://www.google.com/maps/place/8925+West+Chester+Pike,+Upper+Darby+Township,+PA+19082";
+// Footer ke Google Maps link se match rakha hai
+const GMAPS_PLACE = "https://maps.app.goo.gl/eacnPCMDrHYH7USo9?g_st=aw";
 
 const GMAPS_DIRECTIONS =
   "https://www.google.com/maps/dir/?api=1&destination=" +
   encodeURIComponent(ADDRESS_ONE_LINE);
 
+// Embed map – name + full address se direct restaurant ke upar pin
 const MAP_EMBED_SRC =
-  "https://www.google.com/maps?q=8925%20West%20Chester%20Pike%2C%20Upper%20Darby%20Township%2C%20PA%2019082&hl=en&z=15&output=embed";
+  "https://www.google.com/maps?q=" +
+  encodeURIComponent(ADDRESS_ONE_LINE) +
+  "&hl=en&z=15&output=embed";
 
 export default function LocationPage() {
   const orgJsonLd = {
@@ -52,7 +61,7 @@ export default function LocationPage() {
       postalCode: "19082",
       addressCountry: "US",
     },
-    url: "https://thelosttribe.example", // TODO: replace with real domain
+    url: "https://thelosttribe.example", // live domain aane par update kar lena
     sameAs: [GMAPS_PLACE],
   };
 
@@ -64,62 +73,108 @@ export default function LocationPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
 
-      {/* HERO + MAP */}
-      <section className="relative bg-background text-foreground">
-        {/* soft top gradient so map blend ho jaye header se */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(209,178,96,0.18),transparent_55%)]" />
+      {/* 3D-ish hero + map */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-black via-[#050309] to-black text-foreground">
+        {/* soft radial glows */}
+        <div className="pointer-events-none absolute inset-x-0 -top-32 h-80 bg-[radial-gradient(70%_70%_at_10%_0%,rgba(209,178,96,0.25),transparent),radial-gradient(60%_60%_at_90%_10%,rgba(0,255,163,0.18),transparent)] opacity-70" />
 
         <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-10">
-          {/* chip */}
-          <p className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1 text-[10px] tracking-[0.3em] text-amber-200/90 uppercase">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-            Location
-          </p>
+          {/* top text + chips */}
+          <div className="max-w-xl">
+            <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-amber-300/80 uppercase">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
+              Location
+            </p>
 
-          <h1 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
-            Find us on West Chester Pike.
-          </h1>
+            <h1 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+              Find us just{" "}
+              <span className="bg-gradient-to-r from-amber-300 via-amber-200 to-rose-300 bg-clip-text text-transparent">
+                off West&nbsp;Chester&nbsp;Pike
+              </span>
+              .
+            </h1>
 
-          <p className="mt-2 max-w-xl text-sm md:text-base text-muted-foreground">
-            We&apos;re just off West Chester Pike in Upper Darby Township. Easy
-            to reach from the city, with street parking nearby.
-          </p>
+            <p className="mt-3 text-sm md:text-base text-muted-foreground">
+              {ADDRESS_ONE_LINE}
+            </p>
 
-          {/* badges */}
-          <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              • Easy to find
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              • Street parking nearby
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              • Family-friendly
-            </span>
-          </div>
-
-          {/* Map with glow */}
-          <div className="relative mt-8">
-            <div className="pointer-events-none absolute inset-x-8 -bottom-10 h-24 rounded-full bg-amber-500/20 blur-3xl" />
-
-            <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-[0_22px_70px_rgba(0,0,0,0.85)]">
-              <iframe
-                title="The Lost Tribe — Google Map"
-                src={MAP_EMBED_SRC}
-                className="h-[420px] w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            <div className="mt-4 flex flex-wrap gap-2 text-[11px] text-white/70">
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">
+                • Street parking available
+              </span>
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">
+                • Easy access from West Chester Pike
+              </span>
+              <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1">
+                • Family & group-friendly
+              </span>
             </div>
           </div>
 
-          {/* CTA row */}
+          {/* map card – subtle “3D” glass panel */}
+          <div
+            className="mt-10 lg:mt-12"
+            style={{ perspective: "1800px" }} // for transform-gpu
+          >
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-black/60 to-black/95 shadow-[0_40px_120px_rgba(0,0,0,0.9)] transform-gpu transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.01]">
+              {/* light sheen on top */}
+              <div className="pointer-events-none absolute inset-x-0 -top-20 h-40 bg-[radial-gradient(80%_120%_at_50%_0%,rgba(255,255,255,0.14),transparent)] opacity-70" />
+
+              {/* label strip */}
+              <div className="relative flex items-center justify-between px-5 pt-4 pb-3 text-xs text-white/70">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-amber-200/80">
+                    The Lost Tribe
+                  </span>
+                  <span className="text-white/80">
+                    8925 West Chester Pike · Upper Darby Township
+                  </span>
+                </div>
+                <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[10px] font-medium text-emerald-300">
+                  Open from 5 PM
+                </span>
+              </div>
+
+              {/* map */}
+              <div className="relative border-t border-white/10">
+                <iframe
+                  title="The Lost Tribe — Google Map"
+                  src={MAP_EMBED_SRC}
+                  className="h-[420px] w-full"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                {/* gradient fade at bottom for text overlay readability */}
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/75 via-black/40 to-transparent" />
+              </div>
+
+              {/* bottom mini info row inside card */}
+              <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4 text-xs text-white/75">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-medium text-white">
+                    Tonight at The Lost Tribe
+                  </span>
+                  <span>Slow-fire mains, low-light seating, warm room energy.</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-full bg-black/70 px-3 py-1">
+                    Halal kitchen
+                  </span>
+                  <span className="rounded-full bg-black/70 px-3 py-1">
+                    Cozy evening vibe
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA buttons under the “3D” card */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={GMAPS_DIRECTIONS}
               target="_blank"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-black shadow-[0_15px_35px_rgba(0,0,0,0.35)] hover:brightness-110 active:scale-95 transition"
-              aria-label="Get directions"
+              className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-black shadow-[0_18px_45px_rgba(0,0,0,0.7)] hover:brightness-110 active:scale-95 transition"
+              aria-label="Get directions to The Lost Tribe"
             >
               Get directions
             </Link>
@@ -127,27 +182,27 @@ export default function LocationPage() {
             <Link
               href={GMAPS_PLACE}
               target="_blank"
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm hover:bg-white/10 transition"
-              aria-label="View on Google Maps"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm text-white hover:bg-white/10 active:scale-95 transition"
+              aria-label="View The Lost Tribe on Google Maps"
             >
               View on Google Maps
             </Link>
 
             <CopyButton
               text={ADDRESS_ONE_LINE}
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm hover:bg-white/10 transition"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/80 hover:bg-white/10 active:scale-95 transition"
             />
           </div>
         </div>
       </section>
 
-      {/* INFO GRID */}
-      <section className="bg-background text-foreground">
+      {/* Glass info grid under hero */}
+      <section className="bg-gradient-to-b from-black via-[#050309] to-black text-foreground">
         <div className="mx-auto max-w-6xl px-4 pb-16">
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
             {/* Hours */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-5 backdrop-blur">
+              <h3 className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Hours
               </h3>
               <ul className="mt-3 space-y-2 text-sm">
@@ -164,16 +219,16 @@ export default function LocationPage() {
             </div>
 
             {/* Contact */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-5 backdrop-blur">
+              <h3 className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Contact
               </h3>
-              <div className="mt-3 space-y-2 text-sm text-foreground/90">
+              <div className="mt-3 space-y-2 text-sm">
                 <p>
                   Phone:{" "}
                   <Link
                     href={`tel:${PHONE_TEL}`}
-                    className="text-accent hover:underline"
+                    className="text-amber-300 hover:underline"
                   >
                     {PHONE_DISPLAY}
                   </Link>
@@ -182,25 +237,29 @@ export default function LocationPage() {
                   Email:{" "}
                   <Link
                     href={`mailto:${EMAIL}`}
-                    className="text-accent hover:underline"
+                    className="text-amber-300 hover:underline"
                   >
                     {EMAIL}
                   </Link>
                 </p>
               </div>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Prefer WhatsApp or a call? You can reach us using the floating
+                buttons on the right.
+              </p>
             </div>
 
             {/* Parking + Address */}
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.03] to-emerald-500/[0.12] px-5 py-5 backdrop-blur">
+              <h3 className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Parking
               </h3>
               <p className="mt-3 text-sm text-foreground/90">
-                Street parking available nearby. Please arrive a few minutes
-                early, especially on weekends.
+                Street parking available nearby. Arrive a few minutes early to
+                find a comfortable spot.
               </p>
 
-              <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              <h3 className="mt-6 text-xs uppercase tracking-[0.24em] text-muted-foreground">
                 Address
               </h3>
               <p className="mt-3 text-sm text-foreground/90">
