@@ -321,32 +321,43 @@ function MenuItemCard({ item, fadeUp }) {
   return (
     <motion.div
       variants={fadeUp}
-      className="group relative flex items-start justify-between gap-4 rounded-2xl border border-white/10 bg-black/70 p-5 shadow-[0_14px_40px_rgba(0,0,0,0.55)] transition hover:border-amber-400/35 hover:bg-black/80"
+      className="group relative flex gap-4 rounded-2xl border border-white/10 bg-black/70 p-4 shadow-[0_14px_40px_rgba(0,0,0,0.55)] transition hover:border-amber-400/35 hover:bg-black/80"
     >
-      {/* left accent bar */}
-      <div
-        aria-hidden
-        className={`absolute inset-y-3 left-2 w-[3px] rounded-full bg-gradient-to-b ${
-          isStar
-            ? "from-amber-300 via-amber-400 to-rose-300"
-            : "from-emerald-300/70 via-emerald-400/40 to-emerald-300/0"
-        } opacity-80`}
-      />
+      {/* thumbnail image */}
+      <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl">
+        <Image
+          src={item.img}
+          alt={item.name}
+          fill
+          sizes="96px"
+          className="object-cover transition duration-500 group-hover:scale-105"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
 
-      <div className="pl-3 pr-2">
-        <p className="font-semibold leading-tight">
-          {item.name.replace("★", "★")}
-        </p>
-        {hasDesc && (
-          <p className="mt-1 text-sm leading-relaxed text-white/70">
-            {item.desc}
-          </p>
+        {isStar && (
+          <span className="absolute left-1.5 top-1.5 rounded-full bg-black/70 px-2 py-[2px] text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-200">
+            ★ Signature
+          </span>
         )}
       </div>
 
-      <div className="shrink-0 pl-2 text-right">
-        <div className="rounded-full border border-amber-500/30 bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-100 shadow-[0_0_18px_rgba(251,191,36,0.35)]">
-          {item.price}
+      {/* text + price */}
+      <div className="flex flex-1 items-start justify-between gap-3">
+        <div className="pr-2">
+          <p className="font-semibold leading-tight">
+            {item.name.replace("★", "★")}
+          </p>
+          {hasDesc && (
+            <p className="mt-1 text-sm leading-relaxed text-white/70">
+              {item.desc}
+            </p>
+          )}
+        </div>
+
+        <div className="shrink-0 text-right">
+          <div className="rounded-full border border-amber-500/30 bg-amber-400/15 px-3 py-1 text-sm font-semibold text-amber-100 shadow-[0_0_18px_rgba(251,191,36,0.35)]">
+            {item.price}
+          </div>
         </div>
       </div>
     </motion.div>
