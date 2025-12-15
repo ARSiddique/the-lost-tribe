@@ -29,12 +29,12 @@ export const FEATURED_DISHES = [
   {
     title: "Mutton Shinwari Karahi",
     desc: "Mutton, fresh tomatoes and green chilies, cooked low in a light spice wok.",
-    img: "/images/dish-mutton-shinwari.jpeg",
+    img: "/images/menu/karahi-01.jpeg",
   },
   {
     title: "★ Mix Grill (4 people)",
     desc: "A table-side feast of tikka, boti and smoky skewers made for sharing.",
-    img: "/images/dish-mix-grill.jpeg",
+    img: "/images/menu/bbq-04.jpeg",
   },
 ];
 
