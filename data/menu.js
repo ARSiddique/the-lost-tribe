@@ -3,18 +3,18 @@
 // --- Home: "From the Kitchen" PREVIEW (3 items, use LOCAL jpegs) ---
 export const MENU_PREVIEW = [
   {
-    title: "Lamb & Karahi Nights",
-    desc: "Slow-cooked lamb, rich gravies and sharing karahis.",
+    title: "Tribe Karahi",
+    desc: "Shinwari & Punjabi karahi — half/full, made to share.",
     img: "/images/preview-lamb.jpeg",
   },
   {
-    title: "Mandi & Rice Platters",
-    desc: "Smoky mandi, pulao and over-rice favorites built to share.",
+    title: "BBQ & Mixed Grill",
+    desc: "Tikka, boti, namkeen tikka & mixed grill platters.",
     img: "/images/preview-mandi.jpeg",
   },
   {
-    title: "Vegetarian Comforts",
-    desc: "Palak, paneer and slow-cooked daals for comfort nights.",
+    title: "Street Food",
+    desc: "Chaats, shawarma, pakora & crowd-favorites.",
     img: "/images/preview-palak.jpeg",
   },
 ];
@@ -22,680 +22,264 @@ export const MENU_PREVIEW = [
 // --- Home: "Signature Dishes" (use different images than preview) ---
 export const FEATURED_DISHES = [
   {
-    title: "Lamb Shank with Qabuli Pulao",
-    desc: "Slow-cooked lamb over aromatic qabuli rice, finished with toasted nuts.",
-    img: "/images/dish-lamb-shank.jpeg",
-  },
-  {
-    title: "Mutton Shinwari Karahi",
-    desc: "Mutton, fresh tomatoes and green chilies, cooked low in a light spice wok.",
+    title: "Mutton Shinwari Karahi (Full)",
+    desc: "Classic shinwari karahi — full pan for the table.",
     img: "/images/menu/karahi-01.jpeg",
   },
   {
-    title: "★ Mix Grill (4 people)",
-    desc: "A table-side feast of tikka, boti and smoky skewers made for sharing.",
+    title: "Mixed Grill (Full)",
+    desc: "A smoky table-feast — best for sharing.",
     img: "/images/menu/bbq-04.jpeg",
+  },
+  {
+    title: "Lamb Shankh Pulao",
+    desc: "Aromatic pulao with lamb shank — rich & comforting.",
+    img: "/images/dish-lamb-shank.jpeg",
   },
 ];
 
 // --- Home: "Ambience" gallery (used by <AmbienceGallery/>) ---
 export const AMBIENCE_IMAGES = [
-  { alt: "Warm, intimate dining room",        img: "/images/ambience-1.jpeg" },
+  { alt: "Warm, intimate dining room", img: "/images/ambience-1.jpeg" },
   { alt: "Candle-lit tables with soft bokeh", img: "/images/ambience-2.jpeg" },
-  { alt: "Cozy restaurant interior",          img: "/images/ambience-3.jpeg" },
-  { alt: "Evening mood with wood & glass",    img: "/images/ambience-4.jpeg" },
+  { alt: "Cozy restaurant interior", img: "/images/ambience-3.jpeg" },
+  { alt: "Evening mood with wood & glass", img: "/images/ambience-4.jpeg" },
 ];
 
-// --- Full Menu (sectioned) — render on /menu page ---
+// ✅ FINAL MENU — based on your latest Google Maps screenshots
+// NOTE: "Lost Tribe Special" REMOVED (it does not exist in the final menu screenshots)
 export const MENU_SECTIONS = [
+  // ---------------------------
+  // TLT BURGERS (includes sandwiches + fries on the same sheet)
+  // ---------------------------
   {
-    id: "royal-food-street",
-    title: "Royal Food Street",
+    id: "tlt-burgers",
+    title: "TLT BURGERS",
     items: [
-      {
-        name: "2 Chicken Samosas",
-        desc: "Spiced ground chicken, peas, encased in flaky pastry.",
-        price: "$7.99",
-        img: "/images/menu/royal-food-street-01.jpeg",
-      },
-      {
-        name: "2 Vegetable Samosas",
-        desc: "Spiced potato, peas, onion, crispy triangular pastry.",
-        price: "$5.99",
-        img: "/images/menu/royal-food-street-02.jpeg",
-      },
-      {
-        name: "Samosa OR Paapri Chaat",
-        desc: "Crushed veggie samosa or Aloo Tikki or chana, yogurt, chutneys, spices.",
-        price: "$15.99",
-        img: "/images/menu/royal-food-street-03.jpeg",
-      },
-      {
-        name: "Aloo Tikki OR Channa Chaat",
-        desc: "Crushed veggie samosa or Aloo Tikki or chana, yogurt, chutneys, spices.",
-        price: "$15.99",
-        img: "/images/menu/royal-food-street-04.jpeg",
-      },
-      {
-        name: "Royal Creamy Fruit Chaat",
-        desc: "Fresh sliced seasonal fruit with Punjabi Muraba and Special Cream.",
-        price: "$15.99",
-        img: "/images/menu/royal-food-street-05.jpeg",
-      },
-      {
-        name: "Royal Gol Gappay",
-        desc: "Puffed hollow balls, spiced potato, chickpeas, tangy flavored water (pani).",
-        price: "$15.99",
-        img: "/images/menu/royal-food-street-06.jpeg",
-      },
-      {
-        name: "Lollipop Chicken",
-        desc: "French-style chicken drumsticks, crispy coating, Schezwan dip.",
-        price: "$15.99",
-        img: "/images/menu/royal-food-street-07.jpeg",
-      },
+      { name: "Chicken Cheesesteak Sandwich", price: "$10.99", img: "/images/menu1/Chicken Cheesesteak Sandwich.jpg" },
+      { name: "Beef Smash Burger", price: "$9.99", img: "/images/menu1/Beef Smash Burger.jpg" },
+      { name: "Zinger Burger", price: "$8.99", img: "/images/menu1/Zinger Burger.jpg" },
+      { name: "Green Burger", price: "$8.99", img: "/images/menu1/Green Burger.jpg" },
+      { name: "TLT Might Zinger", price: "$10.99", img: "/images/menu1/TLT Might Zinger.jpg" },
+      { name: "Fish Burger", price: "$9.99", img: "/images/menu1/Fish Burger.jpg" },
+      { name: "Spicy Mexican Burger", price: "$10.99", img: "/images/menu1/Spicy Mexican Burger.jpg" },
+      { name: "Smash Quesadilla", price: "$10.99", img: "/images/menu1/Smash Quesadilla.jpg" },
+      { name: "Chicken Quesadilla", price: "$10.99", img: "/images/menu1/Chicken Quesadilla" },
+      { name: "Chicken Qeema Smash Burger", price: "$8.99", img: "/images/menu1/Chicken Qeema Smash Burger.jpg" },
+      { name: "Chapli Kabab Burger", price: "$8.99", img: "/images/menu1/Chapli Kabab Burger.jpg" },
+      { name: "Beef Philly Cheesesteak", price: "$10.99", img: "/images/menu1/Beef Philly Cheesesteak.jpg" },
+
+      // sandwiches shown on same sheet
+      { name: "Chicken Club Sandwich", price: "$7.99", img: "/images/menu1/Chicken Club Sandwich.jpg" },
+      { name: "Egg & Cheese Sandwich", price: "$8.99", img: "/images/menu1/Egg & Cheese Sandwich.jpg" },
+      { name: "Bacon Egg & Cheese", price: "$8.99", img: "/images/menu1/Bacon Egg & Cheese.jpg" },
+      { name: "Grilled Cheese Sandwich", price: "$6.99", img: "/images/menu1/Grilled Cheese Sandwich.jpg" },
+      { name: "Grilled Chicken Sandwich", price: "$8.99", img: "/images/menu1/Grilled Chicken Sandwich.jpg" },
+
+      // fries shown on same sheet
+      { name: "Chicken Loaded Fries", price: "$12.99", img: "/images/menu1/Chicken Loaded Fries.jpg" },
+      { name: "Masala Fries", price: "$8.99", img: "/images/menu1/Masala Fries.jpg" },
+      { name: "Curly Fries", price: "$5.99", img: "/images/menu1/Curly Fries.jpg" },
+      { name: "Classic Fries", price: "$5.99", img: "/images/menu1/Classic Fries.jpg" },
+      { name: "The Lost Potato", price: "$10.99", img: "/images/menu1/The Lost Potato.jpg" },
     ],
   },
-  {
-    id: "royal-tlt-signature",
-    title: "Royal TLT — Signature",
-    items: [
-      {
-        name: "Malai Boti Paratha/Naan Roll",
-        desc: "Creamy chicken boti, mint chutney, wrapped in paratha or naan.",
-        price: "$15.99",
-        img: "/images/menu/royal-tlt-01.jpeg",
-      },
-      {
-        name: "2 Chicken Chapli Kabobs",
-        desc: "2 pcs ground chicken patty, traditional spices, fresh herbs.",
-        price: "$10.99",
-        img: "/images/menu/royal-tlt-02.jpeg",
-      },
-      {
-        name: "Chicken Tikka Paratha/Naan Roll",
-        desc: "Classic chicken tikka, onion, chutney, wrapped in paratha or naan.",
-        price: "$15.99",
-        img: "/images/menu/royal-tlt-03.jpeg",
-      },
-      {
-        name: "Beef Chapli Kabob",
-        desc: "2 pcs flat, spiced ground beef patty, pomegranate seeds, cilantro.",
-        price: "$15.99",
-        img: "/images/menu/royal-tlt-04.jpeg",
-      },
-    ],
-  },
-  {
-    id: "indo-chinese",
-    title: "Indo–Chinese",
-    items: [
-      {
-        name: "Gobi Manchurian",
-        desc: "Crispy cauliflower, sweet & sour Indo–Chinese sauce, ginger.",
-        price: "$17.99",
-        img: "/images/menu/indo-chinese-01.jpeg",
-      },
-      {
-        name: "Chicken or Paneer Manchurian",
-        desc: "Fried paneer cubes or chicken cubes, spicy Indo–Chinese sauce, peppers, onion.",
-        price: "$19.99",
-        img: "/images/menu/indo-chinese-02.jpeg",
-      },
-      {
-        name: "Chilli Chicken",
-        desc: "Dry-fried chicken, fiery sauce, green chilies, onion, soy.",
-        price: "$19.99",
-        img: "/images/menu/indo-chinese-03.jpeg",
-      },
-    ],
-  },
-  {
-    id: "all-time-favourite",
-    title: "All Time Favourite",
-    items: [
-      {
-        name: "Smash Burger",
-        desc: "Thin beef patty, seared and pressed flat, toasted bun. Add fries $2.",
-        price: "$10.99",
-        img: "/images/menu/all-time-fav-01.jpeg",
-      },
-      {
-        name: "Zinger",
-        desc: "Crispy fried chicken fillet, spicy marinade, lettuce, mayo.",
-        price: "$9.99",
-        img: "/images/menu/all-time-fav-02.jpeg",
-      },
-      {
-        name: "Mighty Zinger",
-        desc: "Double crispy chicken fillet, spicy marinade, extra toppings.",
-        price: "$10.99",
-        img: "/images/menu/all-time-fav-03.jpeg",
-      },
-      {
-        name: "Chicken Wings",
-        desc: "Crispy wings — BBQ, Buffalo, Lemon Pepper, or Sweet Chilli.",
-        price: "$10.99",
-        img: "/images/menu/all-time-fav-04.jpeg",
-      },
-      {
-        name: "3 Chicken Tenders",
-        desc: "Marinated chicken breast strips, breaded and fried.",
-        price: "$8.99",
-        img: "/images/menu/all-time-fav-05.jpeg",
-      },
-      {
-        name: "3 Fried Chickens",
-        desc: "Southern-style bone-in chicken, crispy seasoned coating.",
-        price: "$8.99",
-        img: "/images/menu/all-time-fav-06.jpeg",
-      },
-      {
-        name: "Philly Cheesesteak",
-        desc: "Thinly sliced beef, sautéed onion, melted provolone, sub roll.",
-        price: "$10.99",
-        img: "/images/menu/all-time-fav-07.jpeg",
-      },
-      {
-        name: "Lamb OR Beef Shawarma",
-        desc: "Thinly sliced, marinated meat carved from the spit, wrapped in bread.",
-        price: "$16.99",
-        img: "/images/menu/all-time-fav-08.jpeg",
-      },
-      {
-        name: "Chicken Shawarma",
-        desc: "Tender chicken, vertical spit, garlic sauce, fresh toppings.",
-        price: "$15.99",
-        img: "/images/menu/all-time-fav-09.jpeg",
-      },
-    ],
-  },
-  {
-    id: "sea-food",
-    title: "Sea Food",
-    items: [
-      {
-        name: "Fish Pakora",
-        desc: "Crispy batter-fried fish fillets, house dipping sauce.",
-        price: "$24.99",
-        img: "/images/menu/seafood-01.jpeg",
-      },
-      {
-        name: "Lahori Fish OR Fish & Chips",
-        desc: "Crispy deep-fried white fish, special street-style Lahori batter.",
-        price: "$15.99",
-        img: "/images/menu/seafood-02.jpeg",
-      },
-    ],
-  },
-  {
-    id: "bbq",
-    title: "BBQ",
-    items: [
-      {
-        name: "Chicken Tikka OR Malai Boti",
-        desc: "Classic boneless chicken cubes, bold red marinade, grilled.",
-        price: "$15.99",
-        img: "/images/menu/bbq-01.jpeg",
-      },
-      {
-        name: "Chicken Namkeen Tikka",
-        desc: "Tender boneless chicken, mild seasoning, butter-brushed.",
-        price: "$15.99",
-        img: "/images/menu/bbq-02.jpeg",
-      },
-      {
-        name: "Paneer Tikka",
-        desc: "Yogurt-marinated cheese, bell peppers, onion, grilled.",
-        price: "$19.99",
-        img: "/images/menu/bbq-03.jpeg",
-      },
-      {
-        name: "★ Mix Grill (4 people)",
-        desc: "1 Malai Boti, 1 Chicken Tikka, 1 Lamb Tikka, 1 Beef Tikka, 1 Chicken Namkeen Tikka.",
-        price: "$69.99",
-        img: "/images/menu/bbq-04.jpeg",
-      },
-      {
-        name: "Lamb Chops",
-        desc: "Premium lamb ribs, robust spices, grilled.",
-        price: "$18.99",
-        img: "/images/menu/bbq-05.jpeg",
-      },
-      {
-        name: "Lamb Tikka",
-        desc: "Cubes of lamb, intense marinade, charred over heat.",
-        price: "$15.99",
-        img: "/images/menu/bbq-06.jpeg",
-      },
-      {
-        name: "Beef Tikka",
-        desc: "Marinated beef cubes, smoky, char-grilled.",
-        price: "$15.99",
-        img: "/images/menu/bbq-07.jpeg",
-      },
-    ],
-  },
-  {
-    id: "karahi",
-    title: "Karahi (Mild, Medium, Spicy) Option",
-    items: [
-      {
-        name: "Mutton Shinwari Karahi",
-        desc: "Mutton, fresh tomatoes, green chilies, minimal spices (wok).",
-        price: "$59.99",
-        img: "/images/menu/karahi-01.jpeg",
-      },
-      {
-        name: "Mutton Punjabi OR Achari karahi",
-        desc: "Mutton with pickling spices (achari), tangy and flavorful.",
-        price: "$59.99",
-        img: "/images/menu/karahi-02.jpeg",
-      },
-      {
-        name: "Lamb Shank Rosh",
-        desc: "Lamb shanks with Yakhni (soup).",
-        price: "$24.99",
-        img: "/images/menu/karahi-03.jpeg",
-      },
-      {
-        name: "Chicken Shinwari Karahi",
-        desc: "Chicken, fresh tomatoes, green chilies, minimal spices (wok).",
-        price: "$39.99",
-        img: "/images/menu/karahi-04.jpeg",
-      },
-      {
-        name: "Chicken Punjabi OR Achari Karahi",
-        desc: "Chicken with pickling spices (achari), tangy and flavorful.",
-        price: "$39.99",
-        img: "/images/menu/karahi-05.jpeg",
-      },
-      {
-        name: "Tawa Qeema",
-        desc: "Spiced minced (qeema), sautéed on flat griddle (tawa).",
-        price: "$19.99",
-        img: "/images/menu/karahi-06.jpeg",
-      },
-    ],
-  },
-  {
-    id: "rice-platter",
-    title: "Rice Platter",
-    items: [
-      {
-        name: "Lamb Shank Pulao",
-        desc: "Single lamb shank, slow-cooked, paired with aromatic pulao.",
-        price: "$24.99",
-        img: "/images/menu/rice-01.jpeg",
-      },
-      {
-        name: "Beef Tikka OR Lamb Tikka",
-        desc: "Classic boneless beef or lamb cubes, red marinade, grilled.",
-        price: "$19.99",
-        img: "/images/menu/rice-02.jpeg",
-      },
-      {
-        name: "Chicken Tikka OR Malai Boti",
-        desc: "Classic boneless chicken cubes, bold red marinade, grilled.",
-        price: "$19.99",
-        img: "/images/menu/rice-03.jpeg",
-      },
-      {
-        name: "Lamb Mandi",
-        desc: "1pc or 2pc slow-steamed lamb, smoky spice rub, mandi rice.",
-        price: "$24/44",
-        img: "/images/menu/rice-04.jpeg",
-      },
-      {
-        name: "Beef Tihari",
-        desc: "Highly seasoned rice, small tender pieces of beef.",
-        price: "$16.99",
-        img: "/images/menu/rice-05.jpeg",
-      },
-      {
-        name: "Chicken Mandi",
-        desc: "Slow-steamed chicken, smoky spice rub, mandi rice.",
-        price: "$19.99",
-        img: "/images/menu/rice-06.jpeg",
-      },
-      {
-        name: "Chicken Over Rice",
-        desc: "Seasoned chicken, saffron rice, white & hot sauce.",
-        price: "$12.99",
-        img: "/images/menu/rice-07.jpeg",
-      },
-      {
-        name: "Roast Pulao",
-        desc: "Spiced roasted chicken pc, over Bengali-style pulao.",
-        price: "$16.99",
-        img: "/images/menu/rice-08.jpeg",
-      },
-      {
-        name: "Murgh Pulao",
-        desc: "Chicken pieces, fragrant rice, Bengali aromatic spices.",
-        price: "$16.99",
-        img: "/images/menu/rice-09.jpeg",
-      },
-    ],
-  },
-  {
-    id: "vegetarian",
-    title: "Vegetarian",
-    items: [
-      {
-        name: "Palak",
-        desc: "Simple seasoned spinach (palak) sauté.",
-        price: "$15.99",
-        img: "/images/menu/veg-01.jpeg",
-      },
-      {
-        name: "Aloo Palak",
-        desc: "Potatoes (aloo) and fresh spinach, lightly spiced.",
-        price: "$15.99",
-        img: "/images/menu/veg-02.jpeg",
-      },
-      {
-        name: "Palak Paneer",
-        desc: "Indian cottage cheese (paneer) in a creamy, spiced spinach.",
-        price: "$16.99",
-        img: "/images/menu/veg-03.jpeg",
-      },
-      {
-        name: "Paneer Bhujia",
-        desc: "Scrambled paneer, onion, tomato, spices.",
-        price: "$19.99",
-        img: "/images/menu/veg-04.jpeg",
-      },
-      {
-        name: "Daal Mash",
-        desc: "Split white lentils, tempered with ginger, garlic, and chilies.",
-        price: "$15.99",
-        img: "/images/menu/veg-05.jpeg",
-      },
-      {
-        name: "Daal Makhni",
-        desc: "Black lentils, kidney beans, slow-cooked in butter and cream.",
-        price: "$15.99",
-        img: "/images/menu/veg-06.jpeg",
-      },
-      {
-        name: "Mix Veggie",
-        desc: "Seasonal mixed vegetables, mild aromatic spices.",
-        price: "$15.99",
-        img: "/images/menu/veg-07.jpeg",
-      },
-    ],
-  },
+
+  // ---------------------------
+  // DESI (same sheet includes veg/daal/haleem items)
+  // ---------------------------
   {
     id: "desi",
-    title: "Desi",
+    title: "DESI",
     items: [
-      {
-        name: "Palak Ghosht",
-        desc: "Mutton cooked with fresh spinach (palak), aromatic spices.",
-        price: "$17.99",
-        img: "/images/menu/desi-01.jpeg",
-      },
-      {
-        name: "Beef Nihari",
-        desc: "Slow-cooked stew of beef, wheat, barley, and lentils.",
-        price: "$16.99",
-        img: "/images/menu/desi-02.jpeg",
-      },
-      {
-        name: "Chicken Haleem",
-        desc: "Slow-cooked stew of chicken, wheat, barley, and lentils.",
-        price: "$16.99",
-        img: "/images/menu/desi-03.jpeg",
-      },
-      {
-        name: "Beef Haleem",
-        desc: "Slow-cooked stew of beef, wheat, barley, and lentils.",
-        price: "$19.99",
-        img: "/images/menu/desi-04.jpeg",
-      },
+      { name: "Chicken Boneless Handi", price: "$19.99", img: "/images/menu1/Chicken Boneless Handi.jpg" },
+      { name: "Chicken Boneless Biryani", price: "$19.99", img: "/images/menu1/Chicken Boneless Biryani.jpg" },
+      { name: "Palak", price: "$15.99", img: "/images/menu1/Palak.jpg" },
+      { name: "Aloo Palak", price: "$15.99", img: "/images/menu1/Aloo Palak.jpg" },
+      { name: "Palak Paneer", price: "$16.99", img: "/images/menu1/Palak Paneer.jpg" },
+      { name: "Palak Ghosht", price: "$17.99", img: "/images/menu1/Palak Ghosht.jpg" },
+      { name: "Chicken Nihari", price: "$16.99", img: "/images/menu1/Chicken Nihari.jpg" },
+      { name: "Karhi Pakora", price: "$15.99", img: "/images/menu1/Karhi Pakora.jpg" },
+
+      { name: "Daal Mash", price: "$15.99", img: "/images/menu1/Daal Mash.jpg" },
+      { name: "Daal Makhni", price: "$15.99", img: "/images/menu1/Daal Makhni.jpg" },
+      { name: "Beef Haleem", price: "$18.99", img: "/images/menu1/Beef Haleem.jpg" },
+      { name: "Chicken Haleem", price: "$16.99", img: "/images/menu1/Chicken Haleem.jpg" },
+      { name: "Mixed Veggie", price: "$15.99", img: "/images/menu1/Mixed Veggie.jpg" },
+      { name: "Bhindi Masala", price: "$15.99", img: "/images/menu1/Bhindi Masala.jpg" },
+      { name: "Paneer Bhurji", price: "$19.99", img: "/images/menu1/Paneer Bhurji.jpg" },
     ],
   },
+
+  // ---------------------------
+  // TRIBE KARAHI
+  // ---------------------------
   {
-    id: "paratha",
-    title: "Paratha",
+    id: "tribe-karahi",
+    title: "TRIBE KARAHI",
     items: [
-      {
-        name: "Regular Paratha",
-        desc: "Classic flaky, multi-layered flatbread with ghee or oil.",
-        price: "$4.99",
-        img: "/images/menu/paratha-01.jpeg",
-      },
-      {
-        name: "Aloo Paratha",
-        desc: "Mashed potatoes enriched with spices, stuffed.",
-        price: "$6.99",
-        img: "/images/menu/paratha-02.jpeg",
-      },
-      {
-        name: "Gobi Paratha",
-        desc: "Grated cauliflower, pan-roasted to golden perfection.",
-        price: "$6.99",
-        img: "/images/menu/paratha-03.jpeg",
-      },
-      {
-        name: "Keema Paratha",
-        desc: "Pan-fried flatbread stuffed with savory minced meat.",
-        price: "$7.99",
-        img: "/images/menu/paratha-04.jpeg",
-      },
-      {
-        name: "Anda Paratha",
-        desc: "Street-style: flaky paratha with freshly cooked egg inside.",
-        price: "$15.99",
-        img: "/images/menu/paratha-05.jpeg",
-      },
+      { name: "Mutton Shinwari Karahi (Full)", price: "$59.99", img: "/images/menu1/Mutton Shinwari Karahi.jpg" },
+      { name: "Mutton Shinwari Karahi (Half)", price: "$39.99", img: "/images/menu1/Mutton Shinwari Karahi.jpg" },
+      { name: "Mutton Punjabi Karahi (Full)", price: "$59.99", img: "/images/menu1/Mutton Punjabi Karahi.jpg" },
+      { name: "Mutton Punjabi Karahi (Half)", price: "$39.99", img: "/images/menu1/Mutton Punjabi Karahi.jpg" },
+      { name: "Chicken Shinwari Karahi (Full)", price: "$49.99", img: "/images/menu1/Chicken Shinwari Karahi.jpg" },
+      { name: "Chicken Shinwari Karahi (Half)", price: "$29.99", img: "/images/menu1/Chicken Shinwari Karahi.jpg" },
+      { name: "Chicken Punjabi Karahi (Full)", price: "$49.99", img: "/images/menu1/ Chicken Punjabi Karahi.jpg" },
+      { name: "Chicken Punjabi Karahi (Half)", price: "$29.99", img: "/images/menu1/ Chicken Punjabi Karahi.jpg" },
+      { name: "Beef Tawa Qeema", price: "$15.99", img: "/images/menu1/Beef Tawa Qeema.jpg" },
     ],
   },
+
+  // ---------------------------
+  // TRIBLE B.B.Q.
+  // ---------------------------
   {
-    id: "naan",
-    title: "Naan",
+    id: "trible-bbq",
+    title: "TRIBLE B.B.Q.",
     items: [
-      {
-        name: "Simple Naan",
-        desc: "Classic leavened flatbread, baked in a tandoor.",
-        price: "$2.99",
-        img: "/images/menu/naan-01.jpeg",
-      },
-      {
-        name: "Sesame OR Kalwanji Naan",
-        desc: "Naan topped with roasted sesame seeds.",
-        price: "$3.99",
-        img: "/images/menu/naan-02.jpeg",
-      },
-      {
-        name: "Aloo / Onion Naan",
-        desc: "Stuffed with spiced mashed potato or chopped onions.",
-        price: "$6.99",
-        img: "/images/menu/naan-03.jpeg",
-      },
-      {
-        name: "Paneer Naan",
-        desc: "Naan stuffed with finely chopped spiced paneer.",
-        price: "$6.99",
-        img: "/images/menu/naan-04.jpeg",
-      },
+      { name: "Chicken Tikka", price: "$14.99", img: "/images/menu1/Chicken Tikka.jpg" },
+      { name: "Malai Boti", price: "$14.99", img: "/images/menu1/Malai Boti.jpg" },
+      { name: "Chicken Namkeen Tikka", price: "$14.99", img: "/images/menu1/Chicken Namkeen Tikka".jpg },
+      { name: "Paneer Tikka", price: "$19.99", img: "/images/menu1/Paneer Tikka.jpg" },
+      { name: "Lamb Tikka", price: "$16.99", img: "/images/menu1/Lamb Tikka.jpg" },
+      { name: "Beef Tikka", price: "$16.99", img: "/images/menu1/Beef Tikka Beef Tikka.jpg" },
+      { name: "Mixed Grill (Full)", price: "$59.99", img: "/images/menu1/Mixed Grill.jpg" },
+      { name: "Mixed Grill (Half)", price: "$39.99", img: "/images/menu1/Mixed Grill.jpg" },
+      { name: "Add Pulao Rice", price: "$10", img: "/images/menu1/Add Pulao Rice.jpg" },
     ],
   },
+
+  // ---------------------------
+  // TRIBLE PULAO
+  // ---------------------------
   {
-    id: "drinks",
-    title: "Drinks",
+    id: "trible-pulao",
+    title: "TRIBLE PULAO",
     items: [
-      { name: "Water",                  desc: "", price: "$1.99", img: "/images/menu/drink-01.jpeg" },
-      { name: "Soda, juice",            desc: "", price: "$1.99", img: "/images/menu/drink-02.jpeg" },
-      { name: "Mango Lassi",            desc: "", price: "$5.99", img: "/images/menu/drink-03.jpeg" },
-      { name: "Tea",                    desc: "", price: "$4.99", img: "/images/menu/drink-04.jpeg" },
-      { name: "Fresh squeezed juice",   desc: "", price: "$7.99", img: "/images/menu/drink-05.jpeg" },
+      { name: "Lamb Shankh Pulao", price: "$25.99", img: "/images/dish-lamb-shank.jpeg" },
+      { name: "Chicken Mandi", price: "$19.99", img: "/images/menu1/Chicken Mandi.jpg" },
     ],
   },
+
+  // ---------------------------
+  // TLT TRADITIONAL BREADS
+  // ---------------------------
   {
-    id: "desserts",
-    title: "Desserts & Accompaniments",
+    id: "tlt-traditional-breads",
+    title: "TLT TRADITIONAL BREADS",
     items: [
-      { name: "Kheer",  desc: "", price: "$15.99", img: "/images/menu/dessert-01.jpeg" },
-      { name: "Salad",  desc: "", price: "$6.99",  img: "/images/menu/dessert-02.jpeg" },
-      { name: "Chatni", desc: "", price: "$3.99",  img: "/images/menu/dessert-03.jpeg" },
+      { name: "Regular Parathaa", price: "$4.99", img: "/images/menu1/Regular Parathaa.jpg" },
+      { name: "Aloo Ghobhi Paratha", price: "$6.99", img: "/images/menu1/Aloo Ghobhi Paratha.jpg" },
+      { name: "Ghobhi Paratha", price: "$6.99", img: "/images/menu1/Ghobhi Paratha.jpg" },
+      { name: "Qeema Paratha", price: "$7.99", img: "/images/menu1/Qeema Paratha.jpg" },
+      { name: "Mooli Paratha", price: "$4.99", img: "/images/menu1/Mooli Paratha.jpg" },
+      { name: "Meetha Paratha", price: "$5.99", img: "/images/menu1/Meetha Paratha.jpg" },
+
+      { name: "Simple Naan", price: "$2.99", img: "/images/menu1/Simple Naan.jpg" },
+      { name: "Aloo or Onion Naan", price: "$6.99", img: "/images/menu1/Aloo or Onion Naan.jpg" },
+      { name: "Cheese Naan", price: "$5.99", img: "/images/menu1/Cheese Naan.jpg" },
+      { name: "Garlic Naan", price: "$3.99", img: "/images/menu1/Garlic Naan.jpg" },
+      { name: "Sesame Naan", price: "$3.99", img: "/images/menu1/Sesame Naan.jpg" },
+      { name: "Kalwanji Naan", price: "$3.99", img: "/images/menu1/Kalwanji Naan.jpg" },
+      { name: "Paneer Naan", price: "$6.99", img: "/images/menu1/Paneer Naan.jpg" },
+      { name: "Qeema Naan", price: "$6.99", img: "/images/menu1/Qeema Naan.jpg" },
     ],
   },
+
+  // ---------------------------
+  // TLT STREET FOOD
+  // ---------------------------
   {
-    id: "sandwiches",
-    title: "Sandwiches (Croissant, Bagel, Bread)",
+    id: "tlt-street-food",
+    title: "TLT STREET FOOD",
     items: [
-      {
-        name: "Chicken Club Sandwich",
-        desc: "Grilled chicken, bacon, lettuce, tomato, mayo.",
-        price: "$7.99",
-        img: "/images/menu/sandwich-01.jpeg",
-      },
-      {
-        name: "Egg and Cheese",
-        desc: "Fried or scrambled egg, melted cheese.",
-        price: "$7.99",
-        img: "/images/menu/sandwich-02.jpeg",
-      },
-      {
-        name: "Bacon Egg and Cheese",
-        desc: "Fried or scrambled egg, crispy bacon, melted cheese.",
-        price: "$8.99",
-        img: "/images/menu/sandwich-03.jpeg",
-      },
-      {
-        name: "Turkey Egg and Cheese",
-        desc: "Fried/scrambled egg, sliced deli turkey, melted cheese.",
-        price: "$8.99",
-        img: "/images/menu/sandwich-04.jpeg",
-      },
-      {
-        name: "Grilled Cheese",
-        desc: "Buttered toast, melted American and cheddar.",
-        price: "$8.99",
-        img: "/images/menu/sandwich-05.jpeg",
-      },
+      { name: "Creamy Fruit Chaat", price: "$14.99", img: "/images/menu1/Creamy Fruit Chaat.jpg" },
+      { name: "Gol Gappay", price: "$14.99", img: "/images/menu1/Gol Gappay.jpg" },
+      { name: "Gobi Manchurian", price: "$17.99", img: "/images/menu1/Gobi Manchurian.jpg" },
+      { name: "Chicken Manchurian", price: "$19.99", img: "/images/menu1/Chicken Manchurian.jpg" },
+      { name: "Paneer Manchurian", price: "$19.99", img: "/images/menu1/Paneer Manchurian.jpg" },
+      { name: "Chilli Paneer", price: "$19.99", img: "/images/menu1/Chilli Paneer.jpg" },
+      { name: "Chilli Chicken", price: "$19.99", img: "/images/menu1/Chilli Chicken.jpg" },
+      { name: "Nachos", price: "$12.99", img: "/images/menu1/Nachos.jpg" },
+      { name: "Samosa Chaat", price: "$12.99", img: "/images/menu1/Samosa Chaat.jpg" },
+      { name: "Papri Chaat", price: "$12.99", img: "/images/menu1/Papri Chaat.jpg" },
+      { name: "Chicken Tikka Paratha Roll", price: "$12.99", img: "/images/menu1/Chicken Tikka Paratha Roll.jpg" },
+      { name: "Malai Boti Paratha Roll", price: "$14.99", img: "/images/menu1/Malai Boti Paratha Roll.jpg" },
+      { name: "Chicken Shawarma", price: "$14.99", img: "/images/menu1/Chicken Shawarma.jpg" },
+      { name: "Beef Shawarma", price: "$16.99", img: "/images/menu1/Beef Shawarma.jpg" },
+      { name: "Lamb Shawarma", price: "$16.99", img: "/images/menu1/Lamb Shawarma.jpg" },
+      { name: "Beef Chapli Kabab", price: "$12.99", img: "/images/menu1/Beef Chapli Kabab.jpg" },
+      { name: "Chicken Chapli Kabab", price: "$10.99", img: "/images/menu1/Chicken Chapli Kabab.jpg" },
+      { name: "Chicken Parkora", price: "$14.99", img: "/images/menu1/Chicken Parkora.jpg" },
+      { name: "Paneer Pakora", price: "$15.99", img: "/images/menu1/Paneer Pakora.jpg" },
+      { name: "Veggie Pakora", price: "$12.99", img: "/images/menu1/Veggie Pakora.jpg" },
+      { name: "Fish Pakora", price: "$19.99", img: "/images/menu1/Fish PakoraFish Pakora.jpg" },
+      { name: "Labori Fried Fish", price: "$10.99", img: "/images/menu1/Labori Fried Fish.jpg" },
+      { name: "Chicken Samosa (2)", price: "$7.99", img: "/images/menu1/Chicken Samosa (2).jpg" },
+      { name: "Veggie Samosa (2)", price: "$5.99", img: "/images/menu1/Veggie Samosa (2).jpg" },
+      { name: "Lollipop Chicken", price: "$14.99", img: "/images/menu1/Lollipop Chicken.jpg" },
     ],
   },
-  {
-    id: "fries",
-    title: "Fries",
-    items: [
-      {
-        name: "Classic Fries",
-        desc: "Classic thin-cut French fries, lightly salted.",
-        price: "$3.99",
-        img: "/images/menu/fries-01.jpeg",
-      },
-      {
-        name: "The Lost Potato",
-        desc: "Signature spiced, stuffed, and crispy grilled potato.",
-        price: "$8.99",
-        img: "/images/menu/fries-02.jpeg",
-      },
-      {
-        name: "Loaded Fries",
-        desc: "Melted cheese sauce, bacon bits, jalapeños.",
-        price: "$10.99",
-        img: "/images/menu/fries-03.jpeg",
-      },
-      {
-        name: "Masala Fries",
-        desc: "Fries tossed in tangy, spicy dry Indian seasoning mix.",
-        price: "$10.99",
-        img: "/images/menu/fries-04.jpeg",
-      },
-    ],
-  },
+
+  // ---------------------------
+  // AMERICAN BREAKFAST
+  // ---------------------------
   {
     id: "american-breakfast",
-    title: "American Breakfast",
+    title: "AMERICAN BREAKFAST",
     items: [
-      {
-        name: "Pancakes",
-        desc: "Fluffy buttermilk pancakes, maple syrup.",
-        price: "$10.99",
-        img: "/images/menu/american-breakfast-01.jpeg",
-      },
-      {
-        name: "Waffles",
-        desc: "Golden Belgian waffle, whipped cream, berries.",
-        price: "$10.99",
-        img: "/images/menu/american-breakfast-02.jpeg",
-      },
-      {
-        name: "French Toast",
-        desc: "Thick-cut bread, egg & cinnamon, pan-fried.",
-        price: "$10.99",
-        img: "/images/menu/american-breakfast-03.jpeg",
-      },
-      {
-        name: "Grits",
-        desc: "Stone-ground cornmeal, butter, seasoning.",
-        price: "$6.99",
-        img: "/images/menu/american-breakfast-04.jpeg",
-      },
-      {
-        name: "Oat Meal",
-        desc: "Hot rolled oats, choice of milk and toppings.",
-        price: "$6.99",
-        img: "/images/menu/american-breakfast-05.jpeg",
-      },
+      { name: "Pancakes", price: "$10.99", img: "/images/menu1/Pancakes.jpg" },
+      { name: "Waffles", price: "$10.99", img: "/images/menu1/Waffles.jpg" },
+      { name: "Grits", price: "$6.99", img: "/images/menu1/Grits.jpg" },
+      { name: "Oat Meal", price: "$6.99", img: "/images/menu1/Oat Meal.jpg" },
+      { name: "French Toast (Choice of Caramel, Chocolate)", price: "$10.99", img: "/images/menu1/French Toast (Choice of Caramel, Chocolate).jpg" },
+      { name: "Crepes (Choice of Caramel, Chocolate)", price: "$10.99", img: "/images/menu1/Crepes (Choice of Caramel, Chocolate)  .jpg" },
     ],
   },
+
+  // ---------------------------
+  // DESI BREAKFAST
+  // ---------------------------
   {
     id: "desi-breakfast",
-    title: "Desi Breakfast",
+    title: "DESI BREAKFAST",
     items: [
-      {
-        name: "Lahori Channay",
-        desc: "Slow-cooked chickpeas in rich, spicy gravy.",
-        price: "$14.99",
-        img: "/images/menu/desi-breakfast-01.jpeg",
-      },
-      {
-        name: "Beef Nihari",
-        desc: "Beef shank slow-cooked in a delicate, rich gravy.",
-        price: "$16.99",
-        img: "/images/menu/desi-breakfast-02.jpeg",
-      },
-      {
-        name: "Goat Paya",
-        desc: "Goat trotters slow-cooked overnight in a thin, spiced broth.",
-        price: "$16.99",
-        img: "/images/menu/desi-breakfast-03.jpeg",
-      },
-      {
-        name: "Channa Bathura",
-        desc: "Deep-fried fluffy bread served with chickpea curry.",
-        price: "$16.99",
-        img: "/images/menu/desi-breakfast-04.jpeg",
-      },
-      {
-        name: "Halwa Puri",
-        desc: "Sweet semolina pudding with deep-fried soft bread.",
-        price: "$16.99",
-        img: "/images/menu/desi-breakfast-05.jpeg",
-      },
+      { name: "Channa Bathura", price: "$16.99", img: "/images/menu1/Channa Bathura.jpg" },
+      { name: "Halwa Puri", price: "$16.99", img: "/images/menu1/Halwa Puri.jpg" },
+      { name: "Lahori Channay", price: "$14.99", img: "/images/menu1/Lahori Channay.jpg" },
+      { name: "Beef Nihari", price: "$16.99", img: "/images/menu1/Beef Nihari.jpg" },
+      { name: "Goat Paya", price: "$16.99", img: "/images/menu1/Goat Paya.jpg" },
+      { name: "Beef Paya", price: "$16.99", img: "/images/menu1/Beef Paya.jpg" },
     ],
   },
+
+  // ---------------------------
+  // OMELETTE
+  // ---------------------------
   {
-    id: "omelete",
-    title: "Omelete",
+    id: "omelette",
+    title: "OMELETTE",
     items: [
-      {
-        name: "Scrambled egg",
-        desc: "Beaten eggs cooked in a pan.",
-        price: "$10.99",
-        img: "/images/menu/omelete-01.jpeg",
-      },
-      {
-        name: "Veggie Omelete",
-        desc: "Vegetable omelete.",
-        price: "$10.99",
-        img: "/images/menu/omelete-02.jpeg",
-      },
+      { name: "Scrambled Egg", price: "$10.99", img: "/images/menu1/Scrambled Egg.jpg" },
+      { name: "Veggie Omelette", price: "$10.99", img: "/images/menu1/Veggie Omelette.jpg" },
+      { name: "Cheese Omelette", price: "$10.99", img: "/images/menu1/Cheese Omelette.jpg" },
+      { name: "Spicy Omelette", price: "$10.99", img: "/images/menu1/Spicy Omelette.jpg" },
+      { name: "Pakistani Omelette", price: "$10.99", img: "/images/menu1/Pakistani Omelette.jpg" },
+    ],
+  },
+
+  // ---------------------------
+  // TASTE OF BANGLADESH
+  // ---------------------------
+  {
+    id: "taste-of-bangladesh",
+    title: "TASTE OF BANGLADESH",
+    items: [
+      { name: "Roast Pulao", price: "$16.99", img: "/images/menu1/Roast Pulao.jpg" },
+      { name: "Murgh Pulao", price: "$16.99", img: "/images/menu1/Murgh Pulao.jpg" },
+      { name: "Beef Tihari", price: "$18.99", img: "/images/menu1/Beef Tihari.jpg" },
+      { name: "Goat Tihari", price: "$18.99", img: "/images/menu1/Goat Tihari.jpg" },
+      { name: "Bengali Mishti Dol", price: "$12.99", img: "/images/menu1/Bengali Mishti Dol.jpg" },
     ],
   },
 ];
