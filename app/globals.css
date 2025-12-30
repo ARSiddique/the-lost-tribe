@@ -2,15 +2,15 @@
 
 /* ---- CSS Variables (our palette) ---- */
 :root {
-  --bg: #050304;            /* page bg (dark)  */
-  --fg: #f8f2e6;            /* main text       */
-  --muted: #a18c77;         /* secondary text  */
-  --accent: #c99a4b;        /* gold accent     */
-  --card: #141016;          /* dark card       */
-  --border-subtle: 255 255 255 / .10; /* for borders as <r g b / a> */
+  --bg: #050304;
+  --fg: #f8f2e6;
+  --muted: #a18c77;
+  --accent: #c99a4b;
+  --card: #141016;
+  --border-subtle: 255 255 255 / .10;
 }
 
-/* ---- Tailwind v4 theme tokens (so we can do bg-bg, text-fg, etc.) ---- */
+/* ---- Tailwind v4 theme tokens ---- */
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
@@ -18,13 +18,9 @@
   --color-accent: var(--accent);
   --color-card: var(--card);
   --color-border-subtle: rgb(var(--border-subtle));
-
-  /* optional fonts (keep defaults for now) */
-  /* --font-sans: ui-sans-serif, system-ui, sans-serif; */
-  /* --font-mono: ui-monospace, SFMono-Regular, monospace; */
 }
 
-/* Light mode (optional). If you want only dark, you can skip this block) */
+/* Light mode (optional) */
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #f6f0e9;
@@ -40,7 +36,15 @@
 html, body {
   height: 100%;
 }
+
+html {
+  background: var(--bg);       /* ✅ prevents white flash */
+  overscroll-behavior: none;   /* ✅ stops bounce showing white */
+}
+
 body {
+  margin: 0;                   /* ✅ important */
+  min-height: 100dvh;          /* ✅ mobile safe */
   background: var(--bg);
   color: var(--fg);
   font-family: Arial, Helvetica, sans-serif;

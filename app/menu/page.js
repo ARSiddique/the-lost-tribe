@@ -78,7 +78,7 @@ export default function MenuPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#050608] text-white flex flex-col">
+    <main className="relative min-h-screen bg-bg text-fg flex flex-col">
       <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_0%_0%,rgba(251,191,36,0.16),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.12),transparent_55%)]" />
 
       {/* HERO */}
@@ -293,7 +293,8 @@ export default function MenuPage() {
                 </motion.div>
               </motion.div>
 
-              <div className="relative max-h-[calc(100vh-280px)] overflow-y-auto px-5 py-5">
+              <div className="relative max-h-[calc(100vh-280px)] overflow-y-auto px-5 pt-5 pb-16">
+
                 <motion.div initial="hidden" animate="show" variants={stagger}>
                   <div className="relative grid gap-4 md:grid-cols-2">
                     <div
