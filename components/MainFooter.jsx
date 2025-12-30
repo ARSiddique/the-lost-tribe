@@ -1,52 +1,137 @@
 // components/MainFooter.jsx
 "use client";
 import Link from "next/link";
-import { FadeIn } from "@/components/anim"; // from the helper we added
+import Image from "next/image";
+import { FadeIn } from "@/components/anim";
+
+const PHONE_DISPLAY = "+1 610 862 6680";
+const PHONE_TEL = "tel:+16108626680";
+const WHATSAPP = "https://wa.me/16108626680";
+const MAPS =
+  "https://www.google.com/maps/place/The+Lost+Tribe+-+Halal/@39.9679457,-75.2897451,17z/data=!3m1!4b1!4m6!3m5!1s0x89c6c1f51a4d064b:0xc641bc517e167cd6!8m2!3d39.9679457!4d-75.2897451!16s%2Fg%2F11yh6xt70r?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
+
+const LOGO_SRC = "/tlt-logo.jpeg";
 
 export function MainFooter() {
   return (
     <footer className="bg-black text-white">
-      <div className="mx-auto max-w-6xl px-4 py-10 border-t border-white/10">
-        <div className="grid gap-8 md:grid-cols-2">
-          <FadeIn>
-            <div>
-              <p className="text-xl font-semibold text-white">The Lost Tribe</p>
-              {/* Keep one location reference only (matches your map link) */}
-              <p className="mt-1 text-white/60">United States</p>
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="border-t border-white/10 py-10">
+          {/* TOP ROW */}
+          <div className="grid gap-10 md:grid-cols-3 md:items-start">
+            {/* Brand */}
+            <FadeIn>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <span className="relative size-10 rounded-full overflow-hidden bg-white/5 ring-1 ring-white/15">
+                    <Image
+                      src={LOGO_SRC}
+                      alt="The Lost Tribe logo"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </span>
+                  <p className="font-semibold tracking-[0.22em] text-sm">
+                    THE LOST TRIBE
+                  </p>
+                </div>
 
+                <p className="text-sm text-white/60 leading-relaxed">
+                  8925 West Chester Pike,
+                  <br />
+                  Upper Darby Township, PA 19082,
+                  <br />
+                  United States
+                </p>
+
+                <a
+                  href={MAPS}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex text-sm text-accent hover:underline"
+                >
+                  View on Google Maps
+                </a>
+              </div>
+            </FadeIn>
+
+            {/* Links */}
+            <FadeIn delay={0.06}>
+              <div className="md:text-center">
+                <p className="text-xs tracking-[0.25em] text-white/50">
+                  QUICK LINKS
+                </p>
+                <nav className="mt-4 flex flex-col gap-3 text-sm text-white/80 md:items-center">
+                  <Link href="/" className="hover:text-white">
+                    Home
+                  </Link>
+                  <Link href="/menu" className="hover:text-white">
+                    Menu
+                  </Link>
+                  <Link href="/reservations" className="hover:text-white">
+                    Reservations
+                  </Link>
+                  <Link href="/story" className="hover:text-white">
+                    About
+                  </Link>
+                  <Link href="/location" className="hover:text-white">
+                    Location
+                  </Link>
+                </nav>
+              </div>
+            </FadeIn>
+
+            {/* Reservations */}
+            <FadeIn delay={0.1}>
+              <div className="md:text-right">
+                <p className="text-xs tracking-[0.25em] text-white/50">
+                  RESERVATIONS
+                </p>
+
+                <div className="mt-4 space-y-2 text-sm">
+                  <a
+                    href={PHONE_TEL}
+                    className="block text-white/80 hover:text-white"
+                  >
+                    Call: <span className="text-white">{PHONE_DISPLAY}</span>
+                  </a>
+
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-white/80 hover:text-white"
+                  >
+                    WhatsApp: <span className="text-white">Message us</span>
+                  </a>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* BOTTOM ROW */}
+          <div className="mt-10 border-t border-white/10 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p className="text-xs text-white/50">
+              © {new Date().getFullYear()} The Lost Tribe. All rights reserved.
+            </p>
+
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60 md:justify-end">
+              <Link href="/contact" className="hover:text-white">
+                Contact
+              </Link>
+              <Link href="/reservations" className="hover:text-white">
+                Book a Table
+              </Link>
               <a
-                href="https://maps.app.goo.gl/eacnPCMDrHYH7USo9?g_st=aw"
+                href={MAPS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-flex text-sm text-accent hover:underline"
-                aria-label="View The Lost Tribe on Google Maps"
+                className="hover:text-white"
               >
-                View on Google Maps
+                Directions
               </a>
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.08}>
-            <div className="flex flex-col md:items-end gap-3">
-              <nav className="flex flex-wrap gap-4 text-white/80">
-                <Link href="/menu" className="hover:text-white">Menu</Link>
-                <Link href="/reservations" className="hover:text-white">Reservations</Link>
-                <Link href="/about" className="hover:text-white">About</Link>
-                <Link href="/contact" className="hover:text-white">Contact</Link>
-              </nav>
-
-              <div className="flex gap-4 text-white/60">
-                {/* Replace with your real profiles when ready */}
-                <a href="#" className="hover:text-white" aria-label="Instagram">Instagram</a>
-                <a href="#" className="hover:text-white" aria-label="Facebook">Facebook</a>
-                <a href="#" className="hover:text-white" aria-label="TikTok">TikTok</a>
-              </div>
-
-              <p className="text-xs text-white/50">
-                © {new Date().getFullYear()} The Lost Tribe. All rights reserved.
-              </p>
-            </div>
-          </FadeIn>
+          </div>
         </div>
       </div>
     </footer>

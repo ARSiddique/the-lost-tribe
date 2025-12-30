@@ -5,15 +5,21 @@ import Link from "next/link";
 import { FadeIn } from "@/components/anim";
 
 export default function LocationSection() {
-  // Correct Google Maps query for the US location
+  // ✅ Final details
+  const PHONE_DISPLAY = "+1 610 862 6680";
+  const PHONE_TEL = "tel:+16108626680";
+  const WHATSAPP = "https://wa.me/16108626680";
+
+  // ✅ Exact Google Maps link (as requested)
+  const MAP_LINK =
+    "https://www.google.com/maps/place/The+Lost+Tribe+-+Halal/@39.9679457,-75.2897451,17z/data=!3m1!4b1!4m6!3m5!1s0x89c6c1f51a4d064b:0xc641bc517e167cd6!8m2!3d39.9679457!4d-75.2897451!16s%2Fg%2F11yh6xt70r?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
+
+  // ✅ Embed stays query-based (stable)
   const MAP_QUERY =
     "The Lost Tribe - Halal, 8925 West Chester Pike, Upper Darby Township, PA 19082";
   const MAP_EMBED = `https://www.google.com/maps?q=${encodeURIComponent(
     MAP_QUERY
   )}&output=embed`;
-  const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    MAP_QUERY
-  )}`;
 
   return (
     <section
@@ -27,26 +33,23 @@ export default function LocationSection() {
         {/* LEFT – hours + address */}
         <FadeIn>
           <p className="text-xs tracking-[0.35em] text-accent/70">
-            FIND THE ROOM
+            LOCATION &amp; HOURS
           </p>
 
           <h2 className="mt-4 text-2xl font-semibold sm:text-3xl md:text-[2.1rem]">
-            In the middle of{" "}
+            Right in{" "}
             <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-rose-300 bg-clip-text text-transparent">
               Upper&nbsp;Darby.
             </span>
           </h2>
 
           <p className="mt-3 text-sm leading-relaxed text-white/70 sm:text-base max-w-xl">
-            Stepping inside The Lost Tribe should feel like you just slipped
-            out of the city for a few hours. Here&apos;s when the room is lit
-            and the grills are on.
+            Visit us for halal favorites cooked fresh on open grills. Here are
+            our hours, address, and the fastest ways to reserve.
           </p>
 
           <div className="mt-7">
-            <h3 className="text-xs tracking-[0.32em] text-accent/70">
-              HOURS
-            </h3>
+            <h3 className="text-xs tracking-[0.32em] text-accent/70">HOURS</h3>
             <ul className="mt-3 space-y-1.5 text-sm text-white/80 sm:text-base">
               <li>Mon–Thu: 5:00 PM – 10:00 PM</li>
               <li>Fri–Sat: 5:00 PM – 11:00 PM</li>
@@ -71,32 +74,43 @@ export default function LocationSection() {
             <p className="mt-3 text-sm text-white/70">
               Phone:&nbsp;
               <a
-                href="tel:+16108626680"
+                href={PHONE_TEL}
                 className="underline decoration-amber-300/70 underline-offset-2 hover:no-underline"
               >
-                +1&nbsp;610-862-6680
+                {PHONE_DISPLAY}
               </a>
             </p>
 
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link
+              <a
                 href={MAP_LINK}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full bg-accent px-6 py-2.5 text-xs font-medium text-black hover:brightness-110"
               >
                 View on Google Maps ↗
-              </Link>
-              <Link
-                href="/reservations"
+              </a>
+
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center rounded-full border border-white/25 bg-black/40 px-6 py-2.5 text-xs font-medium text-white/90 backdrop-blur-md hover:border-amber-300/70 hover:text-amber-100"
               >
-                Book a table
-              </Link>
+                WhatsApp to Reserve
+              </a>
+
+              <a
+                href={PHONE_TEL}
+                className="inline-flex items-center rounded-full border border-white/20 px-6 py-2.5 text-xs font-medium text-white/90 hover:bg-white/10"
+              >
+                Call to Reserve
+              </a>
             </div>
           </div>
         </FadeIn>
 
-        {/* RIGHT – CTA + embedded map card */}
+        {/* RIGHT – reservation card + embedded map */}
         <FadeIn delay={0.12}>
           <div className="relative h-full">
             {/* glow behind card */}
@@ -104,30 +118,31 @@ export default function LocationSection() {
 
             <div className="relative flex h-full flex-col rounded-3xl border border-white/12 bg-black/75 p-6 shadow-[0_22px_65px_rgba(0,0,0,0.9)] backdrop-blur-xl">
               <p className="text-xs tracking-[0.32em] text-amber-200/85">
-                RESERVE YOUR TABLE
+                RESERVATIONS
               </p>
               <h3 className="mt-3 text-xl font-semibold md:text-2xl">
-                Limited seats every night.
+                Call or WhatsApp.
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-white/70">
-                The room stays intentionally small so every table feels looked
-                after. Reserve ahead to make sure the fire&apos;s waiting for
-                you.
+                For reservations and quick questions, message us on WhatsApp or
+                call directly. We&apos;ll confirm as fast as possible.
               </p>
 
               <div className="mt-4 flex flex-wrap gap-3">
-                <Link
-                  href="/reservations"
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex flex-1 items-center justify-center rounded-full bg-accent px-5 py-2.5 text-xs font-medium text-black hover:brightness-110 md:flex-none md:px-6"
                 >
-                  Reserve for tonight
-                </Link>
-                <Link
-                  href="/menu"
+                  WhatsApp
+                </a>
+                <a
+                  href={PHONE_TEL}
                   className="inline-flex flex-1 items-center justify-center rounded-full border border-white/20 px-5 py-2.5 text-xs font-medium text-white/90 hover:bg-white/10 md:flex-none md:px-6"
                 >
-                  View the menu
-                </Link>
+                  Call
+                </a>
               </div>
 
               {/* map */}

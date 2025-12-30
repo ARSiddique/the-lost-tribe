@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
-import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import { Phone, ArrowUp } from "lucide-react";
 
-// Tiny WhatsApp logo (uses currentColor)
 function WhatsAppIcon({ className }) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
@@ -21,19 +19,14 @@ function WhatsAppIcon({ className }) {
 }
 
 export default function FloatingActions() {
-  // --- EDIT THESE ONCE ---
-  const PHONE_NUMBER = "+1-555-0123"; // tel number (displayed)
-  const WHATSAPP_NUMBER = "+15550123"; // full intl format
-  const WHATSAPP_MSG = "Hello! I'd like to book a table at The Lost Tribe.";
+  const PHONE_TEL = "+16108626680";
+  const PHONE_DISPLAY = "+1 610 862 6680";
+  const WHATSAPP_NUMBER = "+16108626680";
+  const WHATSAPP_MSG =
+    "Hi! I’d like to make a reservation at The Lost Tribe. Please confirm availability.";
 
   const [showTop, setShowTop] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 240);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const [nearFooter, setNearFooter] = useState(false);
 
   const waNumberDigits = useMemo(
     () => WHATSAPP_NUMBER.replace(/\D/g, ""),
@@ -42,39 +35,109 @@ export default function FloatingActions() {
 
   const toTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
+  useEffect(() => {
+    let raf = 0;
+    let obs = null;
+
+    const updateNearBottom = () => {
+      const doc = document.documentElement;
+      const scrolledBottom = window.scrollY + window.innerHeight;
+      const thresholdPx = 420;
+      const isNearBottom = scrolledBottom >= doc.scrollHeight - thresholdPx;
+      setNearFooter((prev) => (prev !== isNearBottom ? isNearBottom : prev));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setShowTop(window.scrollY > 240);
+        updateNearBottom();
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const tryAttachObserver = () => {
+      const footerEl = document.querySelector("footer");
+      if (!footerEl) return false;
+
+      obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setNearFooter(true);
+        },
+        { threshold: 0.01 }
+      );
+
+      obs.observe(footerEl);
+      return true;
+    };
+
+    let tries = 0;
+    const t = setInterval(() => {
+      tries += 1;
+      if (tryAttachObserver() || tries >= 10) clearInterval(t);
+    }, 250);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+      clearInterval(t);
+      try {
+        obs?.disconnect();
+      } catch {}
+    };
+  }, []);
+
+  const wrapperClass = [
+    "fixed right-5 bottom-5 z-[60] flex flex-col gap-3",
+    "pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)]",
+    "transition-all duration-300",
+    nearFooter
+      ? "opacity-0 translate-y-3 pointer-events-none"
+      : "opacity-100 translate-y-0",
+  ].join(" ");
+
+  // ✅ Perfect circle button base
+  const circleBase =
+    "inline-flex items-center justify-center rounded-full shadow-[0_10px_30px_rgba(0,0,0,.25)] active:scale-95 transition";
+  const size = "h-12 w-12"; // change to h-11 w-11 if you want smaller
+
   return (
-    <div className="fixed bottom-5 right-5 z-[60] flex flex-col gap-3 pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)]">
-      {/* WhatsApp */}
-      <Link
-        href={`https://wa.me/${waNumberDigits}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
+    <div className={wrapperClass}>
+      {/* WhatsApp - circle */}
+      <a
+        href={`https://wa.me/${waNumberDigits}?text=${encodeURIComponent(
+          WHATSAPP_MSG
+        )}`}
         target="_blank"
-        aria-label="Chat on WhatsApp"
-        title="Chat on WhatsApp"
-        className="group inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,.25)] hover:brightness-110 active:scale-95 transition"
+        rel="noopener noreferrer"
+        aria-label="WhatsApp"
+        title="WhatsApp"
+        className={`${circleBase} ${size} bg-[#25D366] text-white hover:brightness-110`}
       >
         <WhatsAppIcon className="h-5 w-5" />
-        <span className="hidden sm:inline text-sm font-medium">WhatsApp</span>
-      </Link>
-
-      {/* Call */}
-      <a
-        href={`tel:${PHONE_NUMBER}`}
-        aria-label="Call us"
-        title={`Call ${PHONE_NUMBER}`}
-        className="group inline-flex items-center gap-2 rounded-full bg-accent text-black px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,.25)] hover:brightness-110 active:scale-95 transition"
-      >
-        <Phone className="h-5 w-5" />
-        <span className="hidden sm:inline text-sm font-medium">Call</span>
       </a>
 
-      {/* Back to top */}
+      {/* Call - circle */}
+      <a
+        href={`tel:${PHONE_TEL}`}
+        aria-label="Call"
+        title={`Call ${PHONE_DISPLAY}`}
+        className={`${circleBase} ${size} bg-accent text-black hover:brightness-110`}
+      >
+        <Phone className="h-5 w-5" />
+      </a>
+
+      {/* Back to top - circle */}
       <button
         type="button"
         onClick={toTop}
         aria-label="Back to top"
         title="Back to top"
-        className={`inline-flex items-center justify-center rounded-full bg-white/10 border border-white/20 backdrop-blur px-3 py-3 text-white shadow-[0_10px_30px_rgba(0,0,0,.25)] hover:bg-white/20 active:scale-95 transition will-change-transform will-change-opacity
-        ${showTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"}`}
+        className={`${circleBase} ${size} bg-white/10 border border-white/20 backdrop-blur text-white hover:bg-white/20 ${
+          showTop ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
         <ArrowUp className="h-5 w-5" />
       </button>
