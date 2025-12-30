@@ -1,7 +1,9 @@
+// components/FloatingActions.jsx
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { Phone, ArrowUp } from "lucide-react";
+import { site } from "@/lib/siteConfig";
 
 function WhatsAppIcon({ className }) {
   return (
@@ -19,9 +21,11 @@ function WhatsAppIcon({ className }) {
 }
 
 export default function FloatingActions() {
-  const PHONE_TEL = "+16108626680";
-  const PHONE_DISPLAY = "+1 610 862 6680";
-  const WHATSAPP_NUMBER = "+16108626680";
+  const PHONE_DISPLAY = site.phone || "+1 610 862 6680";
+  const PHONE_TEL = site.phoneTel || "tel:+16108626680";
+
+  // site.whatsapp is raw like "+1610..." (if you keep it), whatsappLink is "https://wa.me/..."
+  const WHATSAPP_RAW = site.whatsapp || "+16108626680";
   const WHATSAPP_MSG =
     "Hi! I’d like to make a reservation at The Lost Tribe. Please confirm availability.";
 
@@ -29,8 +33,8 @@ export default function FloatingActions() {
   const [nearFooter, setNearFooter] = useState(false);
 
   const waNumberDigits = useMemo(
-    () => WHATSAPP_NUMBER.replace(/\D/g, ""),
-    [WHATSAPP_NUMBER]
+    () => String(WHATSAPP_RAW).replace(/\D/g, ""),
+    [WHATSAPP_RAW]
   );
 
   const toTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -98,18 +102,15 @@ export default function FloatingActions() {
       : "opacity-100 translate-y-0",
   ].join(" ");
 
-  // ✅ Perfect circle button base
   const circleBase =
     "inline-flex items-center justify-center rounded-full shadow-[0_10px_30px_rgba(0,0,0,.25)] active:scale-95 transition";
-  const size = "h-12 w-12"; // change to h-11 w-11 if you want smaller
+  const size = "h-12 w-12";
 
   return (
     <div className={wrapperClass}>
-      {/* WhatsApp - circle */}
+      {/* WhatsApp */}
       <a
-        href={`https://wa.me/${waNumberDigits}?text=${encodeURIComponent(
-          WHATSAPP_MSG
-        )}`}
+        href={`https://wa.me/${waNumberDigits}?text=${encodeURIComponent(WHATSAPP_MSG)}`}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="WhatsApp"
@@ -119,9 +120,9 @@ export default function FloatingActions() {
         <WhatsAppIcon className="h-5 w-5" />
       </a>
 
-      {/* Call - circle */}
+      {/* Call */}
       <a
-        href={`tel:${PHONE_TEL}`}
+        href={PHONE_TEL}
         aria-label="Call"
         title={`Call ${PHONE_DISPLAY}`}
         className={`${circleBase} ${size} bg-accent text-black hover:brightness-110`}
@@ -129,7 +130,7 @@ export default function FloatingActions() {
         <Phone className="h-5 w-5" />
       </a>
 
-      {/* Back to top - circle */}
+      {/* Back to top */}
       <button
         type="button"
         onClick={toTop}

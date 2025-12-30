@@ -1,18 +1,18 @@
-// components/MainFooter.jsx
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/anim";
-
-const PHONE_DISPLAY = "+1 610 862 6680";
-const PHONE_TEL = "tel:+16108626680";
-const WHATSAPP = "https://wa.me/16108626680";
-const MAPS =
-  "https://www.google.com/maps/place/The+Lost+Tribe+-+Halal/@39.9679457,-75.2897451,17z/data=!3m1!4b1!4m6!3m5!1s0x89c6c1f51a4d064b:0xc641bc517e167cd6!8m2!3d39.9679457!4d-75.2897451!16s%2Fg%2F11yh6xt70r?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D";
+import { site } from "@/lib/siteConfig";
 
 const LOGO_SRC = "/tlt-logo.jpeg";
 
 export function MainFooter() {
+  const PHONE_DISPLAY = site.phone || "+1 610 862 6680";
+  const PHONE_TEL = site.phoneTel || "tel:+16108626680";
+  const WHATSAPP = site.whatsappLink || "https://wa.me/16108626680";
+  const MAPS = site.mapsLink;
+
   return (
     <footer className="bg-black text-white">
       <div className="mx-auto max-w-6xl px-4">
@@ -37,21 +37,21 @@ export function MainFooter() {
                 </div>
 
                 <p className="text-sm text-white/60 leading-relaxed">
-                  8925 West Chester Pike,
+                  {site.addressLine1}
                   <br />
-                  Upper Darby Township, PA 19082,
-                  <br />
-                  United States
+                  {site.addressLine2}
                 </p>
 
-                <a
-                  href={MAPS}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex text-sm text-accent hover:underline"
-                >
-                  View on Google Maps
-                </a>
+                {MAPS ? (
+                  <a
+                    href={MAPS}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex text-sm text-accent hover:underline"
+                  >
+                    View on Google Maps
+                  </a>
+                ) : null}
               </div>
             </FadeIn>
 
@@ -62,21 +62,12 @@ export function MainFooter() {
                   QUICK LINKS
                 </p>
                 <nav className="mt-4 flex flex-col gap-3 text-sm text-white/80 md:items-center">
-                  <Link href="/" className="hover:text-white">
-                    Home
-                  </Link>
-                  <Link href="/menu" className="hover:text-white">
-                    Menu
-                  </Link>
-                  <Link href="/reservations" className="hover:text-white">
-                    Reservations
-                  </Link>
-                  <Link href="/story" className="hover:text-white">
-                    About
-                  </Link>
-                  <Link href="/location" className="hover:text-white">
-                    Location
-                  </Link>
+                  <Link href="/" className="hover:text-white">Home</Link>
+                  <Link href="/menu" className="hover:text-white">Menu</Link>
+                  <Link href="/reservations" className="hover:text-white">Reservations</Link>
+                  <Link href="/story" className="hover:text-white">About</Link>
+                  <Link href="/location" className="hover:text-white">Location</Link>
+                  <Link href="/contact" className="hover:text-white">Contact</Link>
                 </nav>
               </div>
             </FadeIn>
@@ -112,24 +103,22 @@ export function MainFooter() {
           {/* BOTTOM ROW */}
           <div className="mt-10 border-t border-white/10 pt-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p className="text-xs text-white/50">
-              © {new Date().getFullYear()} The Lost Tribe. All rights reserved.
+              © {new Date().getFullYear()} {site.name || "The Lost Tribe"}. All rights reserved.
             </p>
 
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-white/60 md:justify-end">
-              <Link href="/contact" className="hover:text-white">
-                Contact
-              </Link>
-              <Link href="/reservations" className="hover:text-white">
-                Book a Table
-              </Link>
-              <a
-                href={MAPS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white"
-              >
-                Directions
-              </a>
+              <Link href="/contact" className="hover:text-white">Contact</Link>
+              <Link href="/reservations" className="hover:text-white">Book a Table</Link>
+              {MAPS ? (
+                <a
+                  href={MAPS}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white"
+                >
+                  Directions
+                </a>
+              ) : null}
             </div>
           </div>
         </div>

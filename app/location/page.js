@@ -135,28 +135,31 @@ export default function LocationPage() {
           </div>
 
           {/* CTA buttons */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href={GMAPS_DIRECTIONS}
-              target="_blank"
-              className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-black shadow-[0_18px_45px_rgba(0,0,0,0.7)] hover:brightness-110 active:scale-95 transition"
-            >
-              Get directions
-            </Link>
+         <div className="mt-6 flex flex-wrap gap-3">
+  <a
+    href={GMAPS_DIRECTIONS}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-black shadow-[0_18px_45px_rgba(0,0,0,0.7)] hover:brightness-110 active:scale-95 transition"
+  >
+    Get directions
+  </a>
 
-            <Link
-              href={GMAPS_PLACE}
-              target="_blank"
-              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm text-white hover:bg-white/10 active:scale-95 transition"
-            >
-              View on Google Maps
-            </Link>
+  <a
+    href={GMAPS_PLACE}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm text-white hover:bg-white/10 active:scale-95 transition"
+  >
+    View on Google Maps
+  </a>
 
-            <CopyButton
-              text={ADDRESS_ONE_LINE}
-              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/80 hover:bg-white/10 active:scale-95 transition"
-            />
-          </div>
+  <CopyButton
+    text={ADDRESS_ONE_LINE}
+    className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm text-white/80 hover:bg-white/10 active:scale-95 transition"
+  />
+</div>
+
         </div>
       </section>
 
