@@ -1,67 +1,49 @@
 // app/location/page.jsx
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
+import { site } from "@/lib/siteConfig";
 
 // ─────────────────────────────────────────────
 // SEO metadata
 // ─────────────────────────────────────────────
 export const metadata = {
-  title: "Find Us | The Lost Tribe",
+  title: "Location — The Lost Tribe",
   description:
     "Address, hours, parking, and directions to The Lost Tribe — 8925 West Chester Pike, Upper Darby Township, PA 19082.",
 };
 
-// ─────────────────────────────────────────────
-// Static details (single source of truth)
-// ─────────────────────────────────────────────
-const ADDRESS_ONE_LINE =
-  "The Lost Tribe, 8925 West Chester Pike, Upper Darby Township, PA 19082, USA";
+// single-line address for directions + copy
+const ADDRESS_ONE_LINE = `${site.name}, ${site.addressLine1}, ${site.addressLine2}`;
 
 const ADDRESS_LINES = [
-  "The Lost Tribe",
-  "8925 West Chester Pike",
-  "Upper Darby Township, PA 19082, USA",
+  site.name,
+  site.addressLine1,
+  site.addressLine2,
 ];
 
-const PHONE_DISPLAY = "(610) 555-0123";
-const PHONE_TEL = "+16105550123";
-const EMAIL = "hello@thelosttribe.com";
-
-const HOURS = [
-  { label: "Mon–Thu", time: "5:00 PM — 10:00 PM" },
-  { label: "Fri–Sat", time: "5:00 PM — 11:00 PM" },
-  { label: "Sun", time: "5:00 PM — 9:00 PM" },
-];
-
-// Footer ke Google Maps link se match rakha hai
-const GMAPS_PLACE = "https://maps.app.goo.gl/eacnPCMDrHYH7USo9?g_st=aw";
+const GMAPS_PLACE = site.mapsLink;
 
 const GMAPS_DIRECTIONS =
   "https://www.google.com/maps/dir/?api=1&destination=" +
   encodeURIComponent(ADDRESS_ONE_LINE);
 
-// Embed map – name + full address se direct restaurant ke upar pin
-const MAP_EMBED_SRC =
-  "https://www.google.com/maps?q=" +
-  encodeURIComponent(ADDRESS_ONE_LINE) +
-  "&hl=en&z=15&output=embed";
+const MAP_EMBED_SRC = site.mapsEmbed;
 
 export default function LocationPage() {
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Restaurant",
-    name: "The Lost Tribe",
-    telephone: PHONE_TEL,
-    email: EMAIL,
+    name: site.name,
+    telephone: site.phoneTel?.replace("tel:", "") || "+16108626680",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8925 West Chester Pike",
+      streetAddress: site.addressLine1,
       addressLocality: "Upper Darby Township",
       addressRegion: "PA",
       postalCode: "19082",
       addressCountry: "US",
     },
-    url: "https://thelosttribe.example", // live domain aane par update kar lena
+    url: "https://the-lost-tribe.vercel.app",
     sameAs: [GMAPS_PLACE],
   };
 
@@ -73,13 +55,11 @@ export default function LocationPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
 
-      {/* 3D-ish hero + map */}
+      {/* hero + map */}
       <section className="relative overflow-hidden bg-gradient-to-b from-black via-[#050309] to-black text-foreground">
-        {/* soft radial glows */}
         <div className="pointer-events-none absolute inset-x-0 -top-32 h-80 bg-[radial-gradient(70%_70%_at_10%_0%,rgba(209,178,96,0.25),transparent),radial-gradient(60%_60%_at_90%_10%,rgba(0,255,163,0.18),transparent)] opacity-70" />
 
         <div className="relative mx-auto max-w-6xl px-4 pt-16 pb-10">
-          {/* top text + chips */}
           <div className="max-w-xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-amber-300/80 uppercase">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.8)]" />
@@ -111,23 +91,18 @@ export default function LocationPage() {
             </div>
           </div>
 
-          {/* map card – subtle “3D” glass panel */}
-          <div
-            className="mt-10 lg:mt-12"
-            style={{ perspective: "1800px" }} // for transform-gpu
-          >
+          {/* map card */}
+          <div className="mt-10 lg:mt-12" style={{ perspective: "1800px" }}>
             <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-black/60 to-black/95 shadow-[0_40px_120px_rgba(0,0,0,0.9)] transform-gpu transition-transform duration-500 hover:-translate-y-2 hover:scale-[1.01]">
-              {/* light sheen on top */}
               <div className="pointer-events-none absolute inset-x-0 -top-20 h-40 bg-[radial-gradient(80%_120%_at_50%_0%,rgba(255,255,255,0.14),transparent)] opacity-70" />
 
-              {/* label strip */}
               <div className="relative flex items-center justify-between px-5 pt-4 pb-3 text-xs text-white/70">
                 <div className="flex flex-col gap-0.5">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-amber-200/80">
-                    The Lost Tribe
+                    {site.name}
                   </span>
                   <span className="text-white/80">
-                    8925 West Chester Pike · Upper Darby Township
+                    {site.addressLine1} · Upper Darby Township
                   </span>
                 </div>
                 <span className="rounded-full bg-emerald-500/15 px-3 py-1 text-[10px] font-medium text-emerald-300">
@@ -135,7 +110,6 @@ export default function LocationPage() {
                 </span>
               </div>
 
-              {/* map */}
               <div className="relative border-t border-white/10">
                 <iframe
                   title="The Lost Tribe — Google Map"
@@ -144,37 +118,28 @@ export default function LocationPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                {/* gradient fade at bottom for text overlay readability */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/75 via-black/40 to-transparent" />
               </div>
 
-              {/* bottom mini info row inside card */}
               <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4 text-xs text-white/75">
                 <div className="flex flex-col gap-0.5">
-                  <span className="font-medium text-white">
-                    Tonight at The Lost Tribe
-                  </span>
-                  <span>Slow-fire mains, low-light seating, warm room energy.</span>
+                  <span className="font-medium text-white">Tonight at {site.name}</span>
+                  <span>Slow-fire mains, warm room energy.</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-black/70 px-3 py-1">
-                    Halal kitchen
-                  </span>
-                  <span className="rounded-full bg-black/70 px-3 py-1">
-                    Cozy evening vibe
-                  </span>
+                  <span className="rounded-full bg-black/70 px-3 py-1">Halal kitchen</span>
+                  <span className="rounded-full bg-black/70 px-3 py-1">Evening dining</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* CTA buttons under the “3D” card */}
+          {/* CTA buttons */}
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href={GMAPS_DIRECTIONS}
               target="_blank"
               className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium text-black shadow-[0_18px_45px_rgba(0,0,0,0.7)] hover:brightness-110 active:scale-95 transition"
-              aria-label="Get directions to The Lost Tribe"
             >
               Get directions
             </Link>
@@ -183,7 +148,6 @@ export default function LocationPage() {
               href={GMAPS_PLACE}
               target="_blank"
               className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm text-white hover:bg-white/10 active:scale-95 transition"
-              aria-label="View The Lost Tribe on Google Maps"
             >
               View on Google Maps
             </Link>
@@ -196,7 +160,7 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* Glass info grid under hero */}
+      {/* info grid */}
       <section className="bg-gradient-to-b from-black via-[#050309] to-black text-foreground">
         <div className="mx-auto max-w-6xl px-4 pb-16">
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -206,46 +170,42 @@ export default function LocationPage() {
                 Hours
               </h3>
               <ul className="mt-3 space-y-2 text-sm">
-                {HOURS.map((h) => (
-                  <li
-                    key={h.label}
-                    className="flex items-center justify-between text-foreground/90"
-                  >
-                    <span>{h.label}</span>
-                    <span className="text-foreground">{h.time}</span>
+                {(site.hours || []).map((h) => (
+                  <li key={h} className="text-foreground/90">
+                    {h}
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Contact (NO email) */}
             <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-5 py-5 backdrop-blur">
               <h3 className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Contact
+                Reservations
               </h3>
-              <div className="mt-3 space-y-2 text-sm">
+              <div className="mt-3 space-y-3 text-sm">
                 <p>
-                  Phone:{" "}
-                  <Link
-                    href={`tel:${PHONE_TEL}`}
-                    className="text-amber-300 hover:underline"
-                  >
-                    {PHONE_DISPLAY}
-                  </Link>
+                  Call:{" "}
+                  <a href={site.phoneTel} className="text-amber-300 hover:underline">
+                    {site.phone}
+                  </a>
                 </p>
                 <p>
-                  Email:{" "}
-                  <Link
-                    href={`mailto:${EMAIL}`}
+                  WhatsApp:{" "}
+                  <a
+                    href={`${site.whatsappLink}?text=${encodeURIComponent(
+                      "Hello! I'd like to book a table at The Lost Tribe."
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-amber-300 hover:underline"
                   >
-                    {EMAIL}
-                  </Link>
+                    Message us
+                  </a>
                 </p>
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                Prefer WhatsApp or a call? You can reach us using the floating
-                buttons on the right.
+                For reservations and quick questions, call or WhatsApp.
               </p>
             </div>
 
@@ -255,8 +215,7 @@ export default function LocationPage() {
                 Parking
               </h3>
               <p className="mt-3 text-sm text-foreground/90">
-                Street parking available nearby. Arrive a few minutes early to
-                find a comfortable spot.
+                Street parking available nearby. Arrive a few minutes early to find a comfortable spot.
               </p>
 
               <h3 className="mt-6 text-xs uppercase tracking-[0.24em] text-muted-foreground">
