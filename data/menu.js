@@ -24,12 +24,12 @@ export const FEATURED_DISHES = [
   {
     title: "Mutton Shinwari Karahi (Full)",
     desc: "Classic shinwari karahi — full pan for the table.",
-    img: "/images/menu/karahi-01.jpeg",
+    img: "/images/menu1/Mutton Shinwari Karahi.jpg",
   },
   {
     title: "Mixed Grill (Full)",
     desc: "A smoky table-feast — best for sharing.",
-    img: "/images/menu/bbq-04.jpeg",
+    img: "/images/menu1/Mixed Grill.jpg",
   },
   {
     title: "Lamb Shankh Pulao",
